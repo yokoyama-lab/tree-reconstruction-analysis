@@ -1,0 +1,13 @@
+== T1: the committed lock matches the current statements
+  ok   - T1: gate passes on an unmodified tree
+== T2: a weakened statement is detected
+  ok   - T2: gate rejects a weakened statement and says so
+== T3: a dropped theorem is detected
+  ok   - T3: gate rejects a lock that lost a theorem
+== T4: freeze refuses a dump that does not cover every theorem
+  ok   - T4: freeze refuses to write an incomplete lock
+== T5: the lock holds real types, one line per headline theorem
+  ok   - T5: lock covers all 114 headline theorems
+  ok   - T5: a known statement (gap_CLT_tendsto) is present with its type
+
+passed: 6   failed: 0

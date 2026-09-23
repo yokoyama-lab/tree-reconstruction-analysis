@@ -1,0 +1,5 @@
+n=2400: total mass 1.000000000000
+  E[A_M] = 7196.0025   (closed form 7196.0025)
+  E[A_N] = 5398.3776   (closed form 5398.3776)
+  A_N: mass outside [5348,5448] = 5.475e-05
+  A_M: mass outside [7180,7198] = 1.925e-05

@@ -1,0 +1,30 @@
+{
+  "title": "Tree reconstruction analysis: formal proofs and numerical experiments",
+  "description": "Formal proofs and numerical experiments accompanying Average-Case Comparison Counts and Limit Distributions of Binary-Tree Construction from Inorder–Preorder Sequences. Contains Lean 4 / Mathlib and Rocq developments, proof audits, and independent numerical cross-checks for the Mäkinen and Glück–Yokoyama algorithms under the uniform Catalan model. See REPRODUCING.md and docs/RESULTS.md for scope and verification instructions.",
+  "creators": [
+    {
+      "name": "Ebisu, Karin",
+      "affiliation": "Nanzan University"
+    },
+    {
+      "name": "Uda, Tomoki",
+      "affiliation": "Nanzan University"
+    },
+    {
+      "name": "Yokoyama, Tetsuo",
+      "affiliation": "Nanzan University"
+    }
+  ],
+  "keywords": [
+    "binary trees",
+    "average-case analysis",
+    "formal verification",
+    "Lean 4",
+    "Rocq",
+    "Catalan numbers",
+    "central limit theorem"
+  ],
+  "upload_type": "software",
+  "access_right": "open",
+  "license": "mit"
+}

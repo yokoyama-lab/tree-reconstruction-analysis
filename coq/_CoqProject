@@ -1,0 +1,60 @@
+# Rocq Prover 9.1, standard library only.  Build with:  make
+# (generates Makefile.coq via `rocq makefile`, then compiles every module).
+# The modules use bare names (Require Import Trees, ...), so the directory
+# sits at the empty logical root.
+-Q . ""
+
+# Foundation
+Trees.v
+Codewords.v
+Dictionary.v
+
+# Construction C: functional model, cost, correctness
+Reconstruct.v
+StackInvariant.v
+ReconstructLeft.v
+ReconstructRight.v
+ReconstructInvariant.v
+ReconstructFull.v
+ReconstructCost.v
+
+# Imperative array-stack refinement (C, then M and N)
+ReconstructImp.v
+ReconstructImpM.v
+ReconstructImpN.v
+
+# Imperative program logic (deep-embedded IMP + heap + sound Hoare logic)
+ImpHoare.v
+ReconstructHeap.v
+ReconstructStack.v
+ReconstructStackCom.v
+ReconstructFrame.v
+ReconstructStep.v
+ReconstructLoop.v
+ReconstructWhile.v
+ReconstructExec.v
+
+# Algorithms M and N: data-dependent comparison counts
+ReconstructM.v
+ReconstructN.v
+ReconstructLcount.v
+ReconstructBounds.v
+
+# i-p injectivity (reversibility) and the certified executables
+IpInjective.v
+Extract.v
+ExtractWhile.v
+
+# Combinatorics: Catalan numbers, moments, average and second-moment closed forms
+ReconstructCatalan.v
+ReconstructMoments.v
+ReconstructBinomial.v
+ReconstructDyck.v
+ReconstructPops.v
+ReconstructAverage.v
+ReconstructES.v
+ReconstructES2.v
+ReconstructES3.v
+
+# Information-theoretic lower bound
+ReconstructLowerBound.v

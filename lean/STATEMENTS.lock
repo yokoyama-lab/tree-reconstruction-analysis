@@ -1,0 +1,118 @@
+# Elaborated types of the headline theorems, pinned by check-statements.sh.
+# Format: <sha256[0:12]>  <theorem>  <type>
+# Regenerate with './check-statements.sh --freeze' and review the diff:
+# a change here means the paper's claims changed, not just the proofs.
+fd05b9f664f4  MakinenAnalysis.hProb_eq_count  ∀ {n m : ℕ}, 1 ≤ m → m ≤ n → MakinenAnalysis.hProb n m = ↑(MakinenAnalysis.hw (n - 1) 1 m).card / ↑(MakinenAnalysis.suffixes (n - 1) 1).card
+ab783b8d1b0c  MakinenAnalysis.sum_listSum_mul_eq  ∀ (n : ℕ), 1 ≤ n → (↑n + 2) * ↑(∑ w ∈ MakinenAnalysis.suffixes (n - 1) 1, w.sum) = ↑n * (↑n - 1) * ↑(catalan n)
+47a9268fad01  MakinenAnalysis.sum_finalH_mul_eq  ∀ (n : ℕ), 1 ≤ n → (↑n + 2) * ↑(∑ w ∈ MakinenAnalysis.suffixes (n - 1) 1, MakinenAnalysis.finalH 1 w) = 3 * ↑n * ↑(catalan n)
+82ebdfe2d6e7  MakinenAnalysis.EAM_asymp  Filter.Tendsto (fun n => MakinenAnalysis.EAM n / ↑n) Filter.atTop (nhds 3)
+522830c921ec  MakinenAnalysis.EAN_asymp  Filter.Tendsto (fun n => MakinenAnalysis.EAN n / ↑n) Filter.atTop (nhds (9 / 4))
+6c1df5c1ecff  MakinenAnalysis.VarS_asymp  Filter.Tendsto (fun n => MakinenAnalysis.VarS n) Filter.atTop (nhds 4)
+030394029509  MakinenAnalysis.VarAN_asymp  Filter.Tendsto (fun n => MakinenAnalysis.VarAN n / ↑n) Filter.atTop (nhds (1 / 16))
+7496fd4e807b  MakinenAnalysis.CovSP2_asymp  Filter.Tendsto (fun n => MakinenAnalysis.CovSP2 n) Filter.atTop (nhds 1)
+4cd01f6ae4e2  MakinenAnalysis.EAN_expansion  ∀ (n : ℕ), 1 ≤ n → |MakinenAnalysis.EAN n - (9 / 4 * ↑n - 13 / 8)| ≤ 7 / ↑n
+a235c6502bb0  MakinenAnalysis.EAM_expansion  ∀ (n : ℕ), 1 ≤ n → |MakinenAnalysis.EAM n - (3 * ↑n - 4)| ≤ 6 / ↑n
+71750c072692  MakinenAnalysis.EP2_expansion  ∀ (n : ℕ), 1 ≤ n → |MakinenAnalysis.EP2 n - (↑n / 4 - 5 / 8)| ≤ 3 / (8 * ↑n)
+3febe31e2467  MakinenAnalysis.VarS_expansion  ∀ (n : ℕ), 1 ≤ n → |MakinenAnalysis.VarS n - (4 - 30 / ↑n)| ≤ 144 / ↑n ^ 2
+ef8a1bf5f133  MakinenAnalysis.VarAN_expansion  ∀ (n : ℕ), 1 ≤ n → |MakinenAnalysis.VarAN n - (↑n / 16 + 193 / 32)| ≤ 40 / ↑n
+aea55e6996b7  MakinenAnalysis.EAN_isBigO  (fun n => MakinenAnalysis.EAN n - (9 / 4 * ↑n - 13 / 8)) =O[Filter.atTop] fun n => 1 / ↑n
+ac9f7f183ea5  MakinenAnalysis.EAM_isBigO  (fun n => MakinenAnalysis.EAM n - (3 * ↑n - 4)) =O[Filter.atTop] fun n => 1 / ↑n
+57d6847e9824  MakinenAnalysis.VarS_isBigO  (fun n => MakinenAnalysis.VarS n - (4 - 30 / ↑n)) =O[Filter.atTop] fun n => 1 / ↑n ^ 2
+b12450fcd336  MakinenAnalysis.VarAN_isBigO  (fun n => MakinenAnalysis.VarAN n - (↑n / 16 + 193 / 32)) =O[Filter.atTop] fun n => 1 / ↑n
+ddd67f41ab8c  MakinenAnalysis.thm_Mlimit  ∀ (m : ℕ), Filter.Tendsto (fun n => MakinenAnalysis.hProb n (m + 1)) Filter.atTop (nhds (MakinenAnalysis.nbPMF m))
+ddc6b9bdba37  MakinenAnalysis.thm_Mlimit_count  ∀ (m : ℕ), Filter.Tendsto (fun n => ↑(MakinenAnalysis.hw (n - 1) 1 (m + 1)).card / ↑(MakinenAnalysis.suffixes (n - 1) 1).card) Filter.atTop (nhds (MakinenAnalysis.nbPMF m))
+115690a7ee57  MakinenAnalysis.leafCLT_charFun  ∀ (t : ℝ), Filter.Tendsto (fun n => MakinenAnalysis.charP2 n t) Filter.atTop (nhds (Complex.exp (-↑t ^ 2 / 2)))
+d6d7109ca395  MakinenAnalysis.AN_CLT_charFun  ∀ (t : ℝ), Filter.Tendsto (fun n => MakinenAnalysis.charAN n t) Filter.atTop (nhds (Complex.exp (-↑t ^ 2 / 2)))
+0458b5fbe034  MakinenAnalysis.gap_CLT_charFun  ∀ (t : ℝ), Filter.Tendsto (fun n => MakinenAnalysis.charGap n t) Filter.atTop (nhds (Complex.exp (-↑t ^ 2 / 2)))
+e611c52dd3bc  MakinenAnalysis.gap_CLT_charFun_explicit  ∀ (t : ℝ), Filter.Tendsto (fun n => MakinenAnalysis.charGapExplicit n t) Filter.atTop (nhds (Complex.exp (-↑t ^ 2 / 2)))
+fb0db4346460  MakinenAnalysis.AM_concentration  ∀ (ε : ℝ), 0 < ε → Filter.Tendsto (fun n => ↑{w ∈ MakinenAnalysis.suffixes (n - 1) 1 | ε ≤ |(3 * ↑n - 1 - ↑(MakinenAnalysis.finalH 1 w)) / ↑n - 3|}.card / ↑(catalan n)) Filter.atTop (nhds 0)
+c850c784c7a2  MakinenAnalysis.AM_worst_case_limit  ∀ (c : ℕ), Filter.Tendsto (fun n => ↑{w ∈ MakinenAnalysis.suffixes (n - 1) 1 | MakinenAnalysis.finalH 1 w ≤ c + 1}.card / ↑(catalan n)) Filter.atTop (nhds (1 - (↑c + 3) / 2 ^ (c + 2)))
+1f4ce4597825  MakinenAnalysis.sum_finalH_add_catalan  ∀ (n : ℕ), 1 ≤ n → ∑ w ∈ MakinenAnalysis.suffixes (n - 1) 1, MakinenAnalysis.finalH 1 w + catalan n = catalan (n + 1)
+7007c68cba28  MakinenAnalysis.sum_pops  ∀ (n : ℕ), 1 ≤ n → ∑ w ∈ MakinenAnalysis.suffixes (n - 1) 1, w.sum + catalan (n + 1) = (n + 1) * catalan n
+c428e796afac  MakinenAnalysis.ES_rational  ∀ (n : ℕ), 1 ≤ n → (n + 2) * ∑ w ∈ MakinenAnalysis.suffixes (n - 1) 1, w.sum = n * (n - 1) * catalan n
+0fa2b7c84534  MakinenAnalysis.sum_P2  ∀ (n : ℕ), 3 ≤ n → ∑ w ∈ MakinenAnalysis.suffixes (n - 1) 1, MakinenAnalysis.P2 w = (2 * n - 2).choose (n - 3)
+9a2a092f9878  MakinenAnalysis.EP2_rational  ∀ (n : ℕ), 1 ≤ n → 2 * (2 * n - 1) * ∑ w ∈ MakinenAnalysis.suffixes (n - 1) 1, MakinenAnalysis.P2 w = (n - 1) * (n - 2) * catalan n
+c819fa03f492  MakinenAnalysis.EAM_rational  ∀ (n : ℕ), 1 ≤ n → (n + 2) * ∑ w ∈ MakinenAnalysis.suffixes (n - 1) 1, (w.sum + (2 * n - 1)) = (n * (n - 1) + (2 * n - 1) * (n + 2)) * catalan n
+4ecc22f5025f  MakinenAnalysis.EAN_rational  ∀ (n : ℕ), 1 ≤ n → 2 * (n + 2) * (2 * n - 1) * ∑ w ∈ MakinenAnalysis.suffixes (n - 1) 1, (w.sum + MakinenAnalysis.P2 w + (n + 2)) = (2 * (2 * n - 1) * n * (n - 1) + 2 * (n + 2) * (n + 2) * (2 * n - 1) + (n + 2) * (n - 1) * (n - 2)) * catalan n
+80e7ac9166ab  MakinenAnalysis.sum_finalH_sq  ∀ (n : ℕ), 1 ≤ n → ∑ w ∈ MakinenAnalysis.suffixes (n - 1) 1, MakinenAnalysis.finalH 1 w ^ 2 + 5 * catalan (n + 1) = 2 * catalan (n + 2) + catalan n
+0fb1cdd75977  MakinenAnalysis.sum_pops_sq  ∀ (n : ℕ), 1 ≤ n → ∑ w ∈ MakinenAnalysis.suffixes (n - 1) 1, w.sum ^ 2 + (2 * n + 5) * catalan (n + 1) = (n + 1) ^ 2 * catalan n + 2 * catalan (n + 2)
+d0975b707e55  MakinenAnalysis.sum_P2_sq  ∀ (n : ℕ), 5 ≤ n → ∑ w ∈ MakinenAnalysis.suffixes (n - 1) 1, MakinenAnalysis.P2 w * MakinenAnalysis.P2 w = (n - 1) * (2 * n - 4).choose (n - 5) + (2 * n - 2).choose (n - 3)
+c6a37d864e0f  MakinenAnalysis.sum_finalH_mul_P2  ∀ (n : ℕ), 1 ≤ n → ∑ w ∈ MakinenAnalysis.suffixes (n - 1) 1, MakinenAnalysis.finalH 1 w * MakinenAnalysis.P2 w + ∑ w ∈ MakinenAnalysis.suffixes (n - 1) 1, MakinenAnalysis.P2 w + catalan (n + 1) = ∑ w ∈ MakinenAnalysis.suffixes n 1, MakinenAnalysis.P2 w + 2 * catalan n
+8de1d9356c1a  MakinenAnalysis.sum_pops_mul_P2_rational  ∀ (n : ℕ), 2 ≤ n → 2 * (2 * n - 1) * (n + 2) * ∑ w ∈ MakinenAnalysis.suffixes (n - 1) 1, w.sum * MakinenAnalysis.P2 w = (n - 1) * (n - 2) * (n * (n - 1) + 4) * catalan n
+0d944bbba495  MakinenAnalysis.VarP2_rational  ∀ (n : ℕ), 1 ≤ n → 2 * (2 * n - 1) * (2 * n - 1) * (2 * n - 3) * (catalan n * ∑ w ∈ MakinenAnalysis.suffixes (n - 1) 1, MakinenAnalysis.P2 w * MakinenAnalysis.P2 w) = n * (n + 1) * (n - 1) * (n - 2) * (catalan n * catalan n) + 2 * (2 * n - 1) * (2 * n - 1) * (2 * n - 3) * ((∑ w ∈ MakinenAnalysis.suffixes (n - 1) 1, MakinenAnalysis.P2 w) * ∑ w ∈ MakinenAnalysis.suffixes (n - 1) 1, MakinenAnalysis.P2 w)
+95d0ac7eb61d  MakinenAnalysis.CovSP2_rational  ∀ (n : ℕ), 1 ≤ n → (n + 2) * (2 * n - 1) * (catalan n * ∑ w ∈ MakinenAnalysis.suffixes (n - 1) 1, w.sum * MakinenAnalysis.P2 w) = 2 * (n - 1) * (n - 2) * (catalan n * catalan n) + (n + 2) * (2 * n - 1) * ((∑ w ∈ MakinenAnalysis.suffixes (n - 1) 1, w.sum) * ∑ w ∈ MakinenAnalysis.suffixes (n - 1) 1, MakinenAnalysis.P2 w)
+1e79b9791396  MakinenAnalysis.Psum_succ_add_card  ∀ (l h : ℕ), 1 ≤ h → MakinenAnalysis.Psum (l + 1) h + (MakinenAnalysis.suffixes l h).card = MakinenAnalysis.HPsum l h + MakinenAnalysis.Psum l h + MakinenAnalysis.Hsum l h
+e207f4ae53d4  MakinenAnalysis.toPop_bijOn  ∀ (n : ℕ), 1 ≤ n → Set.BijOn MakinenAnalysis.toPop ↑(BinaryTree.treesOfNumNodesEq n) ↑(MakinenAnalysis.suffixes (n - 1) 1)
+7e4acbb9f86f  MakinenAnalysis.finalH_add_sum_numNodes  ∀ (t : MakinenAnalysis.T), t ≠ BinaryTree.nil → MakinenAnalysis.finalH 1 (MakinenAnalysis.toPop t) + (MakinenAnalysis.toPop t).sum = BinaryTree.numNodes t
+132a32e99c61  MakinenAnalysis.leaves_eq_twoNodes_succ  ∀ (t : MakinenAnalysis.T), t ≠ BinaryTree.nil → MakinenAnalysis.leaves t = MakinenAnalysis.twoNodes t + 1
+81be8a187f95  MakinenAnalysis.P2_add_one_eq_leaves  ∀ (t : MakinenAnalysis.T), t ≠ BinaryTree.nil → MakinenAnalysis.P2 (MakinenAnalysis.toPop t) + 1 = MakinenAnalysis.leaves t
+293b4dcde3db  MakinenAnalysis.central_M  ∀ (t : MakinenAnalysis.T), t ≠ BinaryTree.nil → (MakinenAnalysis.toPop t).sum + (2 * BinaryTree.numNodes t - 1) + MakinenAnalysis.finalH 1 (MakinenAnalysis.toPop t) + 1 = 3 * BinaryTree.numNodes t
+906147cf3e9f  MakinenAnalysis.central_N  ∀ (t : MakinenAnalysis.T), t ≠ BinaryTree.nil → (MakinenAnalysis.toPop t).sum + MakinenAnalysis.P2 (MakinenAnalysis.toPop t) + (BinaryTree.numNodes t + 2) + MakinenAnalysis.finalH 1 (MakinenAnalysis.toPop t) = 2 * BinaryTree.numNodes t + 1 + MakinenAnalysis.leaves t
+fb7073985b7c  MakinenAnalysis.sum_tree_eq_sum_suffixes  ∀ (n : ℕ), 1 ≤ n → ∀ (f : List ℕ → ℕ), ∑ t ∈ BinaryTree.treesOfNumNodesEq n, f (MakinenAnalysis.toPop t) = ∑ w ∈ MakinenAnalysis.suffixes (n - 1) 1, f w
+9a695e986dbf  MakinenAnalysis.ES_rational_trees  ∀ (n : ℕ), 1 ≤ n → (n + 2) * ∑ t ∈ BinaryTree.treesOfNumNodesEq n, (MakinenAnalysis.toPop t).sum = n * (n - 1) * catalan n
+70fadf3dcf63  MakinenAnalysis.EP2_rational_trees  ∀ (n : ℕ), 1 ≤ n → 2 * (2 * n - 1) * ∑ t ∈ BinaryTree.treesOfNumNodesEq n, MakinenAnalysis.P2 (MakinenAnalysis.toPop t) = (n - 1) * (n - 2) * catalan n
+9cce943f24e2  MakinenAnalysis.EAM_rational_trees  ∀ (n : ℕ), 1 ≤ n → (n + 2) * ∑ t ∈ BinaryTree.treesOfNumNodesEq n, ((MakinenAnalysis.toPop t).sum + (2 * n - 1)) = (n * (n - 1) + (2 * n - 1) * (n + 2)) * catalan n
+58be951966fb  MakinenAnalysis.EAN_rational_trees  ∀ (n : ℕ), 1 ≤ n → 2 * (n + 2) * (2 * n - 1) * ∑ t ∈ BinaryTree.treesOfNumNodesEq n, ((MakinenAnalysis.toPop t).sum + MakinenAnalysis.P2 (MakinenAnalysis.toPop t) + (n + 2)) = (2 * (2 * n - 1) * n * (n - 1) + 2 * (n + 2) * (n + 2) * (2 * n - 1) + (n + 2) * (n - 1) * (n - 2)) * catalan n
+4acccf3c9ec8  MakinenAnalysis.VarP2_rational_trees  ∀ (n : ℕ), 1 ≤ n → 2 * (2 * n - 1) * (2 * n - 1) * (2 * n - 3) * (catalan n * ∑ t ∈ BinaryTree.treesOfNumNodesEq n, MakinenAnalysis.P2 (MakinenAnalysis.toPop t) * MakinenAnalysis.P2 (MakinenAnalysis.toPop t)) = n * (n + 1) * (n - 1) * (n - 2) * (catalan n * catalan n) + 2 * (2 * n - 1) * (2 * n - 1) * (2 * n - 3) * ((∑ t ∈ BinaryTree.treesOfNumNodesEq n, MakinenAnalysis.P2 (MakinenAnalysis.toPop t)) * ∑ t ∈ BinaryTree.treesOfNumNodesEq n, MakinenAnalysis.P2 (MakinenAnalysis.toPop t))
+d8faf0bad587  MakinenAnalysis.CovSP2_rational_trees  ∀ (n : ℕ), 1 ≤ n → (n + 2) * (2 * n - 1) * (catalan n * ∑ t ∈ BinaryTree.treesOfNumNodesEq n, (MakinenAnalysis.toPop t).sum * MakinenAnalysis.P2 (MakinenAnalysis.toPop t)) = 2 * (n - 1) * (n - 2) * (catalan n * catalan n) + (n + 2) * (2 * n - 1) * ((∑ t ∈ BinaryTree.treesOfNumNodesEq n, (MakinenAnalysis.toPop t).sum) * ∑ t ∈ BinaryTree.treesOfNumNodesEq n, MakinenAnalysis.P2 (MakinenAnalysis.toPop t))
+2f457932d07b  MakinenAnalysis.EAM_eq  ∀ (n : ℕ), 1 ≤ n → MakinenAnalysis.EAM n = MakinenAnalysis.Eof n fun w => w.sum + (2 * n - 1)
+cbfb0a8a0313  MakinenAnalysis.EAN_eq  ∀ (n : ℕ), 1 ≤ n → MakinenAnalysis.EAN n = MakinenAnalysis.Eof n fun w => w.sum + MakinenAnalysis.P2 w + (n + 2)
+96ba26c4f34e  MakinenAnalysis.VarS_eq  ∀ (n : ℕ), 1 ≤ n → MakinenAnalysis.VarS n = MakinenAnalysis.Vof n fun w => w.sum
+52ac4872f224  MakinenAnalysis.VarP2_eq  ∀ (n : ℕ), 1 ≤ n → MakinenAnalysis.VarP2 n = MakinenAnalysis.Vof n MakinenAnalysis.P2
+5b472ec65f50  MakinenAnalysis.CovSP2_eq  ∀ (n : ℕ), 1 ≤ n → MakinenAnalysis.CovSP2 n = MakinenAnalysis.Cof n (fun w => w.sum) MakinenAnalysis.P2
+8e3f0c796d5b  MakinenAnalysis.VarAN_eq  ∀ (n : ℕ), 1 ≤ n → MakinenAnalysis.VarAN n = (MakinenAnalysis.Vof n fun w => w.sum) + MakinenAnalysis.Vof n MakinenAnalysis.P2 + 2 * MakinenAnalysis.Cof n (fun w => w.sum) MakinenAnalysis.P2
+55d822a033dd  MakinenAnalysis.ipo_length  ∀ (t : MakinenAnalysis.T) (off : ℕ), (MakinenAnalysis.ipo off t).length = BinaryTree.numNodes t
+87211fb5e93c  MakinenAnalysis.popLoop_eq_popStack  ∀ (s : List ℕ) (cur f : ℕ), s.length ≤ f → MakinenAnalysis.popLoop f cur s = MakinenAnalysis.popStack cur s
+03161d5a95c5  MakinenAnalysis.cmpsM_eq  ∀ (t : MakinenAnalysis.T), t ≠ BinaryTree.nil → MakinenAnalysis.cmpsM (MakinenAnalysis.ip t) = 2 * BinaryTree.numNodes t - 1 + MakinenAnalysis.popsM (MakinenAnalysis.ip t)
+e5715c199139  MakinenAnalysis.cmpsN_eq  ∀ (t : MakinenAnalysis.T), t ≠ BinaryTree.nil → MakinenAnalysis.cmpsN (MakinenAnalysis.ip t) = MakinenAnalysis.popsN (MakinenAnalysis.ip t) + MakinenAnalysis.lcountN (MakinenAnalysis.ip t) + BinaryTree.numNodes t + 1
+48509e1a3017  MakinenAnalysis.sum_toPop_eq_Srec  ∀ (t : MakinenAnalysis.T), (MakinenAnalysis.toPop t).sum = MakinenAnalysis.Srec t
+fa80ec3708cc  MakinenAnalysis.runN_gen  ∀ (t : MakinenAnalysis.T) (off : ℕ) (low high : List ℕ) (st : MakinenAnalysis.StN), t ≠ BinaryTree.nil → high ≠ [] → st.stk = low ++ high → (∀ x ∈ low, x < off) → (∀ y ∈ high, off + BinaryTree.numNodes t ≤ y) → ∃ rho, rho.length = MakinenAnalysis.rlen t ∧ (∀ z ∈ rho, off ≤ z ∧ z < off + BinaryTree.numNodes t) ∧ (MakinenAnalysis.runN (MakinenAnalysis.ipo off t) st).stk = rho ++ high ∧ (MakinenAnalysis.runN (MakinenAnalysis.ipo off t) st).pcnt = st.pcnt + MakinenAnalysis.Srec t + low.length ∧ (MakinenAnalysis.runN (MakinenAnalysis.ipo off t) st).lcnt = st.lcnt + MakinenAnalysis.twoNodes t + if 2 ≤ low.length then 1 else 0
+b2a29ca54a63  MakinenAnalysis.runMN_agree  ∀ (xs : List ℕ) (stM : MakinenAnalysis.StM) (stN : MakinenAnalysis.StN), stM.arr = stN.arr → stM.stk = stN.stk → stM.pop = stN.pcnt → (MakinenAnalysis.runM xs stM).arr = (MakinenAnalysis.runN xs stN).arr ∧ (MakinenAnalysis.runM xs stM).stk = (MakinenAnalysis.runN xs stN).stk ∧ (MakinenAnalysis.runM xs stM).pop = (MakinenAnalysis.runN xs stN).pcnt
+5ccd60a32c89  MakinenAnalysis.popsN_eq_Srec  ∀ (t : MakinenAnalysis.T), MakinenAnalysis.popsN (MakinenAnalysis.ip t) = MakinenAnalysis.Srec t
+668daedac723  MakinenAnalysis.popsM_eq_Srec  ∀ (t : MakinenAnalysis.T), MakinenAnalysis.popsM (MakinenAnalysis.ip t) = MakinenAnalysis.Srec t
+040ddfcd9fd8  MakinenAnalysis.popsM_eq_popsN  ∀ (t : MakinenAnalysis.T), MakinenAnalysis.popsM (MakinenAnalysis.ip t) = MakinenAnalysis.popsN (MakinenAnalysis.ip t)
+0b5d1de92df0  MakinenAnalysis.lcountN_eq  ∀ (t : MakinenAnalysis.T), t ≠ BinaryTree.nil → MakinenAnalysis.lcountN (MakinenAnalysis.ip t) = MakinenAnalysis.twoNodes t + 1
+a98e5229c947  MakinenAnalysis.popsM_eq_sum_toPop  ∀ (t : MakinenAnalysis.T), MakinenAnalysis.popsM (MakinenAnalysis.ip t) = (MakinenAnalysis.toPop t).sum
+53f07d378d6b  MakinenAnalysis.popsN_eq_sum_toPop  ∀ (t : MakinenAnalysis.T), MakinenAnalysis.popsN (MakinenAnalysis.ip t) = (MakinenAnalysis.toPop t).sum
+c2ec3556ee1c  MakinenAnalysis.lcountN_eq_P2  ∀ (t : MakinenAnalysis.T), t ≠ BinaryTree.nil → MakinenAnalysis.lcountN (MakinenAnalysis.ip t) = MakinenAnalysis.P2 (MakinenAnalysis.toPop t) + 1
+3295c8a86c40  MakinenAnalysis.cmpsM_exec  ∀ (t : MakinenAnalysis.T), t ≠ BinaryTree.nil → MakinenAnalysis.cmpsM (MakinenAnalysis.ip t) = (MakinenAnalysis.toPop t).sum + (2 * BinaryTree.numNodes t - 1)
+bfd3ce3a38ca  MakinenAnalysis.cmpsN_exec  ∀ (t : MakinenAnalysis.T), t ≠ BinaryTree.nil → MakinenAnalysis.cmpsN (MakinenAnalysis.ip t) = (MakinenAnalysis.toPop t).sum + MakinenAnalysis.P2 (MakinenAnalysis.toPop t) + (BinaryTree.numNodes t + 2)
+cad3b1b452bf  MakinenAnalysis.central_M_exec  ∀ (t : MakinenAnalysis.T), t ≠ BinaryTree.nil → MakinenAnalysis.cmpsM (MakinenAnalysis.ip t) + MakinenAnalysis.finalH 1 (MakinenAnalysis.toPop t) + 1 = 3 * BinaryTree.numNodes t
+67f1c0bc522c  MakinenAnalysis.central_N_exec  ∀ (t : MakinenAnalysis.T), t ≠ BinaryTree.nil → MakinenAnalysis.cmpsN (MakinenAnalysis.ip t) + MakinenAnalysis.finalH 1 (MakinenAnalysis.toPop t) = 2 * BinaryTree.numNodes t + 1 + MakinenAnalysis.leaves t
+543b7e6bf8a4  MakinenAnalysis.runMFull_arr_eq  ∀ (t : MakinenAnalysis.T), (MakinenAnalysis.runMFull (MakinenAnalysis.ip t)).arr = (MakinenAnalysis.runNFull (MakinenAnalysis.ip t)).arr
+d18409aeae00  MakinenAnalysis.rebuildsM_iff_rebuildsN  ∀ (t : MakinenAnalysis.T), MakinenAnalysis.rebuildsM t ↔ MakinenAnalysis.rebuildsN t
+e6f190bcdc56  MakinenAnalysis.ES_exec_rational_trees  ∀ (n : ℕ), 1 ≤ n → (n + 2) * ∑ t ∈ BinaryTree.treesOfNumNodesEq n, MakinenAnalysis.popsN (MakinenAnalysis.ip t) = n * (n - 1) * catalan n
+711de04fe06b  MakinenAnalysis.EAM_exec_rational_trees  ∀ (n : ℕ), 1 ≤ n → (n + 2) * ∑ t ∈ BinaryTree.treesOfNumNodesEq n, MakinenAnalysis.cmpsM (MakinenAnalysis.ip t) = (n * (n - 1) + (2 * n - 1) * (n + 2)) * catalan n
+d43e58987a0d  MakinenAnalysis.EAN_exec_rational_trees  ∀ (n : ℕ), 1 ≤ n → 2 * (n + 2) * (2 * n - 1) * ∑ t ∈ BinaryTree.treesOfNumNodesEq n, MakinenAnalysis.cmpsN (MakinenAnalysis.ip t) = (2 * (2 * n - 1) * n * (n - 1) + 2 * (n + 2) * (n + 2) * (2 * n - 1) + (n + 2) * (n - 1) * (n - 2)) * catalan n
+b8d250238bea  MakinenAnalysis.CovSP2_exec_rational_trees  ∀ (n : ℕ), 1 ≤ n → (n + 2) * (2 * n - 1) * (catalan n * ∑ t ∈ BinaryTree.treesOfNumNodesEq n, MakinenAnalysis.popsN (MakinenAnalysis.ip t) * (MakinenAnalysis.lcountN (MakinenAnalysis.ip t) - 1)) = 2 * (n - 1) * (n - 2) * (catalan n * catalan n) + (n + 2) * (2 * n - 1) * ((∑ t ∈ BinaryTree.treesOfNumNodesEq n, MakinenAnalysis.popsN (MakinenAnalysis.ip t)) * ∑ t ∈ BinaryTree.treesOfNumNodesEq n, (MakinenAnalysis.lcountN (MakinenAnalysis.ip t) - 1))
+2d7e39892e36  MakinenAnalysis.EAM_eq_exec  ∀ (n : ℕ), 1 ≤ n → MakinenAnalysis.EAM n = MakinenAnalysis.EofTree n fun t => MakinenAnalysis.cmpsM (MakinenAnalysis.ip t)
+31a68a225596  MakinenAnalysis.EAN_eq_exec  ∀ (n : ℕ), 1 ≤ n → MakinenAnalysis.EAN n = MakinenAnalysis.EofTree n fun t => MakinenAnalysis.cmpsN (MakinenAnalysis.ip t)
+44b616bb0d5d  MakinenAnalysis.two_twoNodes_succ_le  ∀ (t : MakinenAnalysis.T), t ≠ BinaryTree.nil → 2 * MakinenAnalysis.twoNodes t + 1 ≤ BinaryTree.numNodes t
+654ce7c7b6fe  MakinenAnalysis.two_leaves_le  ∀ (t : MakinenAnalysis.T), t ≠ BinaryTree.nil → 2 * MakinenAnalysis.leaves t ≤ BinaryTree.numNodes t + 1
+17ef39ebb000  MakinenAnalysis.gap_add  ∀ (t : MakinenAnalysis.T), t ≠ BinaryTree.nil → MakinenAnalysis.cmpsM (MakinenAnalysis.ip t) + MakinenAnalysis.P2 (MakinenAnalysis.toPop t) + 3 = MakinenAnalysis.cmpsN (MakinenAnalysis.ip t) + BinaryTree.numNodes t
+12f8d55efb52  MakinenAnalysis.gap_ge  ∀ (t : MakinenAnalysis.T), t ≠ BinaryTree.nil → MakinenAnalysis.cmpsN (MakinenAnalysis.ip t) + BinaryTree.numNodes t / 2 ≤ MakinenAnalysis.cmpsM (MakinenAnalysis.ip t) + 2
+4296089e999b  MakinenAnalysis.gap_ge_six  ∀ (t : MakinenAnalysis.T), 6 ≤ BinaryTree.numNodes t → MakinenAnalysis.cmpsN (MakinenAnalysis.ip t) + (BinaryTree.numNodes t / 2 - 2) ≤ MakinenAnalysis.cmpsM (MakinenAnalysis.ip t)
+5e2bc1d5e38e  MakinenAnalysis.cmpsN_lt_cmpsM  ∀ (t : MakinenAnalysis.T), 6 ≤ BinaryTree.numNodes t → MakinenAnalysis.cmpsN (MakinenAnalysis.ip t) < MakinenAnalysis.cmpsM (MakinenAnalysis.ip t)
+4e106723fe46  MakinenAnalysis.gap_attained_odd  ∀ (m : ℕ), MakinenAnalysis.cmpsN (MakinenAnalysis.ip (MakinenAnalysis.comb m)) + BinaryTree.numNodes (MakinenAnalysis.comb m) / 2 = MakinenAnalysis.cmpsM (MakinenAnalysis.ip (MakinenAnalysis.comb m)) + 2
+5a44fd0b00e3  MakinenAnalysis.gap_attained_even  ∀ (m : ℕ), MakinenAnalysis.cmpsN (MakinenAnalysis.ip (MakinenAnalysis.combL m)) + BinaryTree.numNodes (MakinenAnalysis.combL m) / 2 = MakinenAnalysis.cmpsM (MakinenAnalysis.ip (MakinenAnalysis.combL m)) + 2
+9b3bcce20f70  MakinenAnalysis.exists_gap_attained  ∀ (n : ℕ), 1 ≤ n → ∃ t, BinaryTree.numNodes t = n ∧ MakinenAnalysis.cmpsN (MakinenAnalysis.ip t) + n / 2 = MakinenAnalysis.cmpsM (MakinenAnalysis.ip t) + 2
+afbca8bb26d6  MakinenAnalysis.mem_treesOfSize  ∀ (t : MakinenAnalysis.T), t ∈ MakinenAnalysis.treesOfSize (BinaryTree.numNodes t)
+4dea477c9e4c  MakinenAnalysis.forall_numNodes_eq  ∀ {n : ℕ} {P : MakinenAnalysis.T → Prop}, (∀ t ∈ MakinenAnalysis.treesOfSize n, P t) → ∀ (t : MakinenAnalysis.T), BinaryTree.numNodes t = n → P t
+fa9686942c8b  MakinenAnalysis.rebuildsN_le_eight  ∀ (t : MakinenAnalysis.T), BinaryTree.numNodes t ≤ 8 → ∀ p ∈ MakinenAnalysis.childAssoc 0 t, (MakinenAnalysis.runNFull (MakinenAnalysis.ip t)).arr p.1 = p.2
+f91e59c4ce43  MakinenAnalysis.rebuildsM_le_eight  ∀ (t : MakinenAnalysis.T), BinaryTree.numNodes t ≤ 8 → ∀ p ∈ MakinenAnalysis.childAssoc 0 t, (MakinenAnalysis.runMFull (MakinenAnalysis.ip t)).arr p.1 = p.2
+8f6701b715e0  MakinenAnalysis.ip_injective  ∀ {t₁ t₂ : MakinenAnalysis.T}, MakinenAnalysis.ip t₁ = MakinenAnalysis.ip t₂ → t₁ = t₂
+27ce72e46bab  MakinenAnalysis.ipDec_ipo  ∀ (t : MakinenAnalysis.T) (off : ℕ), MakinenAnalysis.ipDec off (MakinenAnalysis.ipo off t) = t
+6a452058802c  MakinenAnalysis.ip_roundtrip  ∀ (t : MakinenAnalysis.T), MakinenAnalysis.ipDec 0 (MakinenAnalysis.ip t) = t ∧ ∀ (u : MakinenAnalysis.T), MakinenAnalysis.ip u = MakinenAnalysis.ip t → u = t
+7025703728f4  MakinenAnalysis.dvoretzky_motzkin  ∀ (l : List ℤ), l ≠ [] → (∀ x ∈ l, x ≤ 1) → l.sum = 1 → ∃! r, r < l.length ∧ ∀ k < l.length, 0 < (List.take (k + 1) (l.rotate r)).sum
+a91b8dc6eaa4  MakinenAnalysis.card_dominating_mul  ∀ (n k : ℕ), n * (Finset.filter MakinenAnalysis.Dominating (MakinenAnalysis.degWords n k)).card = (MakinenAnalysis.degWords n k).card
+807f34a60d8b  MakinenAnalysis.U_mul_closed  ∀ (n k : ℕ), 1 ≤ n → 2 * k + 1 ≤ n → n * MakinenAnalysis.U (n - 1) 1 k = n.choose k * (n - k).choose (n - 1 - 2 * k) * 2 ^ (n - 1 - 2 * k)
+7849faaa5f73  MakinenAnalysis.card_trees_twoNodes  ∀ (n k : ℕ), 1 ≤ n → 2 * k + 1 ≤ n → n * (MakinenAnalysis.treesTwo n k).card = n.choose k * (n - k).choose (n - 1 - 2 * k) * 2 ^ (n - 1 - 2 * k)
+70e29b3bf15b  MakinenAnalysis.sum_card_trees_twoNodes  ∀ (n : ℕ), ∑ k ∈ Finset.range (n + 1), (MakinenAnalysis.treesTwo n k).card = catalan n
+19d9731f02a9  MakinenAnalysis.sum_pmf'_eq_one  ∀ (n : ℕ), 1 ≤ n → ∑ k ∈ Finset.range n, MakinenAnalysis.pmf' n k = 1
+b29dc71388e9  MakinenAnalysis.mode_prefactor_tendsto  (∀ (n : ℕ), 1 ≤ n → ∑ k ∈ Finset.range n, MakinenAnalysis.pmf' n k = 1) → Filter.Tendsto (fun n => MakinenAnalysis.sigmaP2 n * MakinenAnalysis.pmf' n ⌊↑n / 4⌋₊) Filter.atTop (nhds (1 / √(2 * Real.pi)))
+be69e736c37e  MakinenAnalysis.pmf'_local_limit  ∀ (x : ℝ), Filter.Tendsto (fun n => MakinenAnalysis.sigmaP2 n * MakinenAnalysis.pmf' n ⌊MakinenAnalysis.muP2 n + x * MakinenAnalysis.sigmaP2 n⌋₊) Filter.atTop (nhds (Real.exp (-x ^ 2 / 2) / √(2 * Real.pi)))
+fc9fc924e75a  MakinenAnalysis.charP2mu_tendsto  ∀ (t : ℝ), Filter.Tendsto (fun n => MakinenAnalysis.charP2mu n t) Filter.atTop (nhds (Complex.exp (-↑t ^ 2 / 2)))
+8616aa7aab28  MakinenAnalysis.AN_CLT_of_leafCLT  (∀ (t : ℝ), Filter.Tendsto (fun n => MakinenAnalysis.charP2 n t) Filter.atTop (nhds (Complex.exp (-↑t ^ 2 / 2)))) → ∀ (t : ℝ), Filter.Tendsto (fun n => MakinenAnalysis.charAN n t) Filter.atTop (nhds (Complex.exp (-↑t ^ 2 / 2)))
+9655d2580cff  MakinenAnalysis.leafCLT_tendsto  Filter.Tendsto (fun n => MakinenAnalysis.empPM n (MakinenAnalysis.stdP2 n)) Filter.atTop (nhds MakinenAnalysis.stdGaussianPM)
+d3ba355cec68  MakinenAnalysis.AN_CLT_tendsto  Filter.Tendsto (fun n => MakinenAnalysis.empPM n (MakinenAnalysis.stdAN n)) Filter.atTop (nhds MakinenAnalysis.stdGaussianPM)
+b21d43207209  MakinenAnalysis.gap_CLT_tendsto  Filter.Tendsto (fun n => MakinenAnalysis.empPM n (MakinenAnalysis.stdGap n)) Filter.atTop (nhds MakinenAnalysis.stdGaussianPM)

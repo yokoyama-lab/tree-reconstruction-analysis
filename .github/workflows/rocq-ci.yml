@@ -1,0 +1,62 @@
+name: rocq-ci
+
+on:
+  push:
+    paths: ["coq/**", ".github/workflows/rocq-ci.yml"]
+  pull_request:
+    paths: ["coq/**", ".github/workflows/rocq-ci.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install opam
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends opam m4
+
+      - name: Cache opam root
+        id: opam-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.opam
+          # Bump this key whenever the package set below changes, otherwise a
+          # cached (and possibly incomplete) ~/.opam is restored and the install
+          # step has nothing to correct.
+          key: opam-ocaml530-rocq911-stdlib900-${{ runner.os }}
+
+      - name: Initialise opam
+        if: steps.opam-cache.outputs.cache-hit != 'true'
+        run: |
+          opam init --bare --disable-sandboxing -y
+          opam switch create default ocaml-base-compiler.5.3.0 -y
+
+      - name: Install Rocq 9.1 and its standard library
+        # Run unconditionally: `opam install` is idempotent, so this also
+        # repairs a cache that predates a change to the package set.
+        run: |
+          eval "$(opam env --switch=default)"
+          opam repo add rocq-released https://rocq-prover.org/opam/released -y || true
+          opam install -y rocq-core.9.1.1 rocq-stdlib.9.0.0
+
+      - name: Show Rocq version
+        run: |
+          eval "$(opam env --switch=default)"
+          rocq --version
+
+      - name: Build
+        run: |
+          eval "$(opam env --switch=default)"
+          make -C coq COQBIN="$(opam var --switch=default bin)/"
+
+      - name: Check axioms
+        run: |
+          eval "$(opam env --switch=default)"
+          make -C coq check-axioms COQBIN="$(opam var --switch=default bin)/"

@@ -1,0 +1,2 @@
+== elaborating 114 headline statements
+OK: all 114 headline statements match STATEMENTS.lock.

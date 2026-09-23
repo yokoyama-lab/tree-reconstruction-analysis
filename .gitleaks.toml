@@ -1,0 +1,10 @@
+# This Lean local proof binding is not a credential.
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "CovSP2 proof term named key"
+condition = "AND"
+paths = ['''(^|/)lean/MakinenAnalysis/MomentBridge\.lean$''']
+regexTarget = "line"
+regexes = ['''^  have key := CovSP2_rational n \(by omega\)$''']

@@ -1,0 +1,18 @@
+name = "makinen_analysis"
+version = "0.1.0"
+keywords = ["math"]
+defaultTargets = ["MakinenAnalysis"]
+
+[leanOptions]
+pp.unicode.fun = true # pretty-prints `fun a ↦ b`
+relaxedAutoImplicit = false
+
+# Mathlib pinned to the same toolchain as the group's other Lean projects
+# (proj/aah_lean, analysis-at-home/lean-mathlib): leanprover/lean4:v4.31.0.
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "v4.31.0"
+
+[[lean_lib]]
+name = "MakinenAnalysis"

@@ -1,0 +1,33 @@
+name: numerical-ci
+on:
+  push:
+    paths: ["scripts/**", ".github/workflows/numerical-ci.yml"]
+  pull_request:
+    paths: ["scripts/**", ".github/workflows/numerical-ci.yml"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+          cache: pip
+          cache-dependency-path: scripts/requirements.txt
+      - run: python -m pip install -r scripts/requirements.txt
+      - run: python scripts/enum_moments.py
+      - run: python scripts/verify_derivations.py
+      - run: python scripts/transfer_dp.py --moments 30
+      - name: Check reconstruction comparison counters
+        run: |
+          cc -O2 -o scripts/count_mnc scripts/theme6/count_mnc.c
+          for scenario in "1000 rand 1" "100 best" "100 mworst" "100 nworst"; do
+            read -r -a args <<< "$scenario"
+            output=$(scripts/count_mnc "${args[@]}")
+            printf '%s\n' "$output"
+            [[ "$output" == *"CvsN=OK"* ]]
+          done

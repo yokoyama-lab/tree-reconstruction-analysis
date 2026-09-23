@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: "Please cite this software when using the formal proofs or numerical experiments."
+type: software
+title: "Tree reconstruction analysis: formal proofs and numerical experiments"
+authors:
+  - family-names: Ebisu
+    given-names: Karin
+    affiliation: Nanzan University
+  - family-names: Uda
+    given-names: Tomoki
+    affiliation: Nanzan University
+  - family-names: Yokoyama
+    given-names: Tetsuo
+    affiliation: Nanzan University
+repository-code: "https://github.com/yokoyama-lab/tree-reconstruction-analysis"
+url: "https://github.com/yokoyama-lab/tree-reconstruction-analysis"
+license: MIT
+keywords:
+  - binary trees
+  - average-case analysis
+  - formal verification
+  - Lean
+  - Rocq
+  - Catalan numbers
+  - central limit theorem
+abstract: >-
+  Formal proofs and numerical experiments for the average comparison counts
+  and limit distributions of two binary-tree reconstruction algorithms from
+  inorder-preorder sequences under the uniform Catalan model.

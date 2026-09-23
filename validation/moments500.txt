@@ -1,0 +1,4 @@
+n=500:  E[A_M]=1496.011952  E[A_N]=1123.387328
+        Var[A_M]=3.940571  Var[A_N]=37.203711
+        Var[A_N] - n/16 = 5.953711  (-> 193/32 = 6.03125)
+moments: closed forms confirmed for n = 1..500

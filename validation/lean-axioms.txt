@@ -1,0 +1,151 @@
+== lake build
+✔ [8558/8591] Built MakinenAnalysis.BallotCount (6.9s)
+✔ [8559/8591] Built MakinenAnalysis.CycleLemma (6.9s)
+✔ [8560/8591] Built MakinenAnalysis.LocalCLTGauss (7.7s)
+✔ [8561/8591] Built MakinenAnalysis.Asymptotics (8.8s)
+✔ [8562/8591] Built MakinenAnalysis.LeafCount (8.7s)
+✔ [8563/8591] Built MakinenAnalysis.Concentration (7.8s)
+✔ [8564/8591] Built MakinenAnalysis.Expansions (8.8s)
+✔ [8565/8591] Built MakinenAnalysis.DegreeWords (35s)
+✔ [8566/8591] Built MakinenAnalysis.LocalCLT (14s)
+✔ [8567/8591] Built MakinenAnalysis.OrbitCount (4.4s)
+✔ [8568/8591] Built MakinenAnalysis.LocalCLTWindow (5.8s)
+✔ [8569/8591] Built MakinenAnalysis.CharFunIntegrate (5.1s)
+✔ [8570/8591] Built MakinenAnalysis.PopClosed (17s)
+✔ [8571/8591] Built MakinenAnalysis.LocalCLTMode (16s)
+✔ [8572/8591] Built MakinenAnalysis.PopDegreeBridge (6.5s)
+✔ [8573/8591] Built MakinenAnalysis.Normalization (3.0s)
+✔ [8574/8591] Built MakinenAnalysis.TreeEnum (4.2s)
+✔ [8575/8591] Built MakinenAnalysis.TreeCount (4.7s)
+✔ [8576/8591] Built MakinenAnalysis.ExecModel (5.1s)
+✔ [8577/8591] Built MakinenAnalysis.ExactMoments (9.4s)
+✔ [8578/8591] Built MakinenAnalysis.ExecStack (4.0s)
+✔ [8579/8591] Built MakinenAnalysis.LocalLimit (13s)
+✔ [8580/8591] Built MakinenAnalysis.CharFunLimit (3.8s)
+✔ [8581/8591] Built MakinenAnalysis.ModePrefactor (8.6s)
+✔ [8582/8591] Built MakinenAnalysis.TreeIdentities (17s)
+✔ [8583/8591] Built MakinenAnalysis.MomentBridge (9.1s)
+✔ [8584/8591] Built MakinenAnalysis.CharFunWindow (29s)
+✔ [8585/8591] Built MakinenAnalysis.ExecBridge (58s)
+✔ [8586/8591] Built MakinenAnalysis.ModePrefactorMain (93s)
+✔ [8587/8591] Built MakinenAnalysis.FinalAssembly (4.5s)
+✔ [8588/8591] Built MakinenAnalysis.GapCLT (5.6s)
+✔ [8589/8591] Built MakinenAnalysis.WeakConvergence (4.2s)
+✔ [8590/8591] Built MakinenAnalysis (3.7s)
+Build completed successfully (8591 jobs).
+== #print axioms for 114 headline theorems
+'MakinenAnalysis.hProb_eq_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.sum_listSum_mul_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.sum_finalH_mul_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.EAM_asymp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.EAN_asymp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.VarS_asymp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.VarAN_asymp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.CovSP2_asymp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.EAN_expansion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.EAM_expansion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.EP2_expansion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.VarS_expansion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.VarAN_expansion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.EAN_isBigO' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.EAM_isBigO' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.VarS_isBigO' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.VarAN_isBigO' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.thm_Mlimit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.thm_Mlimit_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.leafCLT_charFun' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.AN_CLT_charFun' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.gap_CLT_charFun' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.gap_CLT_charFun_explicit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.AM_concentration' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.AM_worst_case_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.sum_finalH_add_catalan' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.sum_pops' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.ES_rational' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.sum_P2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.EP2_rational' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.EAM_rational' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.EAN_rational' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.sum_finalH_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.sum_pops_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.sum_P2_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.sum_finalH_mul_P2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.sum_pops_mul_P2_rational' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.VarP2_rational' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.CovSP2_rational' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.Psum_succ_add_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.toPop_bijOn' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.finalH_add_sum_numNodes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.leaves_eq_twoNodes_succ' depends on axioms: [propext]
+'MakinenAnalysis.P2_add_one_eq_leaves' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.central_M' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.central_N' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.sum_tree_eq_sum_suffixes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.ES_rational_trees' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.EP2_rational_trees' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.EAM_rational_trees' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.EAN_rational_trees' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.VarP2_rational_trees' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.CovSP2_rational_trees' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.EAM_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.EAN_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.VarS_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.VarP2_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.CovSP2_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.VarAN_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.ipo_length' depends on axioms: [propext]
+'MakinenAnalysis.popLoop_eq_popStack' depends on axioms: [propext, Quot.sound]
+'MakinenAnalysis.cmpsM_eq' depends on axioms: [propext, Quot.sound]
+'MakinenAnalysis.cmpsN_eq' depends on axioms: [propext, Quot.sound]
+'MakinenAnalysis.sum_toPop_eq_Srec' depends on axioms: [propext, Quot.sound]
+'MakinenAnalysis.runN_gen' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.runMN_agree' depends on axioms: [propext, Quot.sound]
+'MakinenAnalysis.popsN_eq_Srec' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.popsM_eq_Srec' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.popsM_eq_popsN' depends on axioms: [propext, Quot.sound]
+'MakinenAnalysis.lcountN_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.popsM_eq_sum_toPop' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.popsN_eq_sum_toPop' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.lcountN_eq_P2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.cmpsM_exec' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.cmpsN_exec' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.central_M_exec' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.central_N_exec' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.runMFull_arr_eq' depends on axioms: [propext, Quot.sound]
+'MakinenAnalysis.rebuildsM_iff_rebuildsN' depends on axioms: [propext, Quot.sound]
+'MakinenAnalysis.ES_exec_rational_trees' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.EAM_exec_rational_trees' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.EAN_exec_rational_trees' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.CovSP2_exec_rational_trees' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.EAM_eq_exec' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.EAN_eq_exec' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.two_twoNodes_succ_le' depends on axioms: [propext, Quot.sound]
+'MakinenAnalysis.two_leaves_le' depends on axioms: [propext, Quot.sound]
+'MakinenAnalysis.gap_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.gap_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.gap_ge_six' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.cmpsN_lt_cmpsM' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.gap_attained_odd' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.gap_attained_even' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.exists_gap_attained' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.mem_treesOfSize' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.forall_numNodes_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.rebuildsN_le_eight' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.rebuildsM_le_eight' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.ip_injective' depends on axioms: [propext, Quot.sound]
+'MakinenAnalysis.ipDec_ipo' depends on axioms: [propext, Quot.sound]
+'MakinenAnalysis.ip_roundtrip' depends on axioms: [propext, Quot.sound]
+'MakinenAnalysis.dvoretzky_motzkin' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.card_dominating_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.U_mul_closed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.card_trees_twoNodes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.sum_card_trees_twoNodes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.sum_pmf'_eq_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.mode_prefactor_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.pmf'_local_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.charP2mu_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.AN_CLT_of_leafCLT' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.leafCLT_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.AN_CLT_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MakinenAnalysis.gap_CLT_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]
+OK: all 114 theorems are axiom-clean.

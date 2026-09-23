@@ -1,0 +1,16 @@
+# Local dependencies and generated results
+.venv/
+__pycache__/
+*.pyc
+count_mnc
+scripts/count_mnc
+results/
+*.log
+*.pdf
+*.aux
+*.dvi
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.synctex.gz

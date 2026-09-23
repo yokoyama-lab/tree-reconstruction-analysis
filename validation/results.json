@@ -1,0 +1,52 @@
+[
+  {
+    "name": "rocq",
+    "exit": 0,
+    "seconds": 68.1
+  },
+  {
+    "name": "lean-axioms",
+    "exit": 0,
+    "seconds": 212.03
+  },
+  {
+    "name": "lean-statements",
+    "exit": 0,
+    "seconds": 5.65
+  },
+  {
+    "name": "lean-gate-tests",
+    "exit": 0,
+    "seconds": 21.58
+  },
+  {
+    "name": "enumeration",
+    "exit": 0,
+    "seconds": 1.4
+  },
+  {
+    "name": "symbolic",
+    "exit": 0,
+    "seconds": 60.95
+  },
+  {
+    "name": "moments500",
+    "exit": 0,
+    "seconds": 13.8
+  },
+  {
+    "name": "distribution2400",
+    "exit": 0,
+    "seconds": 72.43
+  },
+  {
+    "name": "remy",
+    "exit": 0,
+    "seconds": 99.85
+  },
+  {
+    "name": "haskell",
+    "exit": 0,
+    "seconds": 34.99
+  }
+]

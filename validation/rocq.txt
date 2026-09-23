@@ -1,0 +1,279 @@
+make: Entering directory '<artifact>/coq'
+"<opam-bin>/rocq" makefile -f _CoqProject -o Makefile.coq
+make -f Makefile.coq
+make[1]: Entering directory '<artifact>/coq'
+ROCQ DEP VFILES
+ROCQ compile Codewords.v
+ROCQ compile Trees.v
+File "./Codewords.v", line 28, characters 15-19:
+Warning: Loading Stdlib without prefix is deprecated.
+Use "From Stdlib Require List" or the deprecated "From Coq Require List"
+for compatibility with older Coq versions.
+[deprecated-missing-stdlib,deprecated-since-9.0,deprecated,default]
+File "./Codewords.v", line 28, characters 20-25:
+Warning: Loading Stdlib without prefix is deprecated.
+Use "From Stdlib Require Arith" or the deprecated "From Coq Require Arith"
+for compatibility with older Coq versions.
+[deprecated-missing-stdlib,deprecated-since-9.0,deprecated,default]
+File "./Codewords.v", line 28, characters 26-29:
+Warning: Loading Stdlib without prefix is deprecated.
+Use "From Stdlib Require Lia" or the deprecated "From Coq Require Lia"
+for compatibility with older Coq versions.
+[deprecated-missing-stdlib,deprecated-since-9.0,deprecated,default]
+ROCQ compile ImpHoare.v
+ROCQ compile ReconstructBinomial.v
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+ROCQ compile Dictionary.v
+ROCQ compile StackInvariant.v
+File "./StackInvariant.v", line 29, characters 15-19:
+Warning: Loading Stdlib without prefix is deprecated.
+Use "From Stdlib Require List" or the deprecated "From Coq Require List"
+for compatibility with older Coq versions.
+[deprecated-missing-stdlib,deprecated-since-9.0,deprecated,default]
+File "./StackInvariant.v", line 29, characters 20-25:
+Warning: Loading Stdlib without prefix is deprecated.
+Use "From Stdlib Require Arith" or the deprecated "From Coq Require Arith"
+for compatibility with older Coq versions.
+[deprecated-missing-stdlib,deprecated-since-9.0,deprecated,default]
+File "./StackInvariant.v", line 29, characters 26-29:
+Warning: Loading Stdlib without prefix is deprecated.
+Use "From Stdlib Require Lia" or the deprecated "From Coq Require Lia"
+for compatibility with older Coq versions.
+[deprecated-missing-stdlib,deprecated-since-9.0,deprecated,default]
+Closed under the global context
+     = [2; 1; 0; 3]
+     : list nat
+     = 4
+     : nat
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+ROCQ compile Reconstruct.v
+ROCQ compile ReconstructLeft.v
+ROCQ compile ReconstructRight.v
+Closed under the global context
+ROCQ compile ReconstructCost.v
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+ROCQ compile ReconstructImp.v
+Closed under the global context
+ROCQ compile ReconstructM.v
+Closed under the global context
+ROCQ compile ReconstructN.v
+Closed under the global context
+ROCQ compile ReconstructHeap.v
+Closed under the global context
+Closed under the global context
+Closed under the global context
+ROCQ compile ReconstructLcount.v
+Closed under the global context
+ROCQ compile ReconstructCatalan.v
+Closed under the global context
+Closed under the global context
+Closed under the global context
+ROCQ compile ReconstructImpM.v
+Closed under the global context
+ROCQ compile ReconstructStack.v
+Closed under the global context
+Closed under the global context
+ROCQ compile ReconstructBounds.v
+Closed under the global context
+Closed under the global context
+Closed under the global context
+ROCQ compile ReconstructMoments.v
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+ROCQ compile ReconstructInvariant.v
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+ROCQ compile ReconstructImpN.v
+Closed under the global context
+Closed under the global context
+Closed under the global context
+ROCQ compile ReconstructStackCom.v
+Closed under the global context
+ROCQ compile ReconstructFrame.v
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+ROCQ compile Extract.v
+Closed under the global context
+ROCQ compile ReconstructDyck.v
+File "./Extract.v", line 43, characters 0-68:
+Warning: Setting extraction output directory by default to
+"<artifact>/coq". Use
+"Set Extraction Output Directory" or command line option "-output-directory"
+to set a different directory for extracted files to appear in.
+[extraction-default-directory,extraction,default]
+ROCQ compile ReconstructPops.v
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+ROCQ compile ReconstructFull.v
+Closed under the global context
+ROCQ compile ReconstructStep.v
+Closed under the global context
+Closed under the global context
+ROCQ compile ReconstructAverage.v
+Closed under the global context
+Closed under the global context
+ROCQ compile ReconstructLowerBound.v
+Closed under the global context
+Closed under the global context
+ROCQ compile ReconstructLoop.v
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+ROCQ compile IpInjective.v
+Closed under the global context
+Closed under the global context
+ROCQ compile ReconstructWhile.v
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+ROCQ compile ReconstructExec.v
+Closed under the global context
+Closed under the global context
+Closed under the global context
+ROCQ compile ExtractWhile.v
+File "./ExtractWhile.v", line 45, characters 0-88:
+Warning: Setting extraction output directory by default to
+"<artifact>/coq". Use
+"Set Extraction Output Directory" or command line option "-output-directory"
+to set a different directory for extracted files to appear in.
+[extraction-default-directory,extraction,default]
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+ROCQ compile ReconstructES.v
+Closed under the global context
+Closed under the global context
+Closed under the global context
+ROCQ compile ReconstructES2.v
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+ROCQ compile ReconstructES3.v
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+make[1]: Leaving directory '<artifact>/coq'
+./check-axioms.sh
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+Closed under the global context
+------------------------------------------------------------
+axiom-free theorems certified: 80 / 80
+PASS: all headline theorems are closed under the global context.
+make: Leaving directory '<artifact>/coq'
