@@ -56,4 +56,7 @@ development snapshot; the new and changed modules were compiled from source.
 - Statement audit: all 187 types match `STATEMENTS.lock`.
 - Statement-checker self-test: 6 passed, 0 failed.
 - The Rocq development and the numerical checks are unchanged and were not rerun.
-- `tools/mutation-test.sh` was not rerun for this update.
+- Mutation test (`tools/mutation-test.sh`, all five suites, 2026-10-30, on an
+  out-of-repository copy): 94 passed, 0 failed. All 80 injected faults were
+  rejected (68 by the build, 7 by the statement lock, 5 by the axiom gate), and
+  none of the 14 semantics-preserving refactors was flagged.
