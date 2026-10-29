@@ -16,6 +16,13 @@ sources, reference-book scans, submission records, local build caches, and
 internal development notes are maintained separately. The unimported
 `ForMathlib` candidate extracts are not part of the artifact's Lean library.
 
+On 2026-10-29 the Lean library was extended from development snapshot
+`2aa620f5adcf3824d2794def5c0ec17d7d8f8751` with the ten random BST model modules
+(`Bst*`, `UnifOutcome`), the root import file, the audit list, the statement lock
+and the mutation test. The proof text is unchanged; only module comments that
+pointed to local paths of unpublished sources were reworded, and one comment
+claiming novelty was made neutral. The 32 earlier modules are unchanged.
+
 The paper's comparison-count notation is `Cmp_M` / `Cmp_N`. Identifiers such as
 `EAM`, `EAN`, `AN_CLT`, and numerical output labels `A_M` / `A_N` retain the
 original notation and denote the same quantities.

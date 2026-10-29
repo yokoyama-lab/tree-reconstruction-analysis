@@ -3,7 +3,9 @@
 Formal proofs and numerical experiments for the average comparison counts and
 limit distributions of binary-tree reconstruction from inorder–preorder sequences.
 The algorithms studied are Mäkinen's (2000) algorithm **M** and the improved
-Glück–Yokoyama algorithm **N**, under the uniform Catalan model.
+Glück–Yokoyama algorithm **N**, under the uniform Catalan model. The Lean
+library also covers the random binary search tree (BST) model, in which the keys
+are inserted in a uniformly random order (added 2026-10-29).
 
 This artifact accompanies *Average-Case Comparison Counts and Limit Distributions
 of Binary-Tree Construction from Inorder–Preorder Sequences*, by **Karin Ebisu,
@@ -13,7 +15,7 @@ Tomoki Uda, and Tetsuo Yokoyama** (Nanzan University).
 
 | Directory | Contents |
 |---|---|
-| [`lean/`](lean/) | Lean 4 / Mathlib proofs of the structural identities, execution counts, exact moments, asymptotic expansions, and limit laws; 32 modules plus the root library; 114 audited theorems. |
+| [`lean/`](lean/) | Lean 4 / Mathlib proofs of the structural identities, execution counts, exact moments, asymptotic expansions, and limit laws, under the uniform Catalan and random BST models; 42 modules plus the root library; 187 audited theorems. |
 | [`coq/`](coq/) | Rocq proofs of reconstruction correctness and exact/algebraic results; 39 modules; 80 audited theorems. |
 | [`scripts/`](scripts/) | Independent enumeration, exact rational dynamic programming, finite-size distribution computation, and Rémy sampling. |
 

@@ -2,7 +2,7 @@
 
 The labels below are from the Japanese manuscript (2026-09-23). Numbering in
 earlier English drafts differs. Lean theorem names belong to `MakinenAnalysis`.
-The exact types of all 114 audited Lean theorems are in
+The exact types of all 187 audited Lean theorems are in
 [`STATEMENTS.lock`](../lean/STATEMENTS.lock).
 
 | Paper label / result | Lean modules and representative theorems | Rocq counterparts |
@@ -20,6 +20,28 @@ The exact types of all 114 audited Lean theorems are in
 | `prop:leafclt`: leaf-count CLT | `FinalAssembly`: `leafCLT_charFun`; `WeakConvergence`: `leafCLT_tendsto` | — |
 | `thm:Nclt`: comparison-count CLT | `FinalAssembly`: `AN_CLT_charFun`; `WeakConvergence`: `AN_CLT_tendsto` | — |
 | `cor:sep`: deterministic gap and its CLT | `ExecBridge`: deterministic separation; `GapCLT`: `gap_CLT_charFun_explicit`, `gap_CLT_tendsto` | `ReconstructBounds`, `Trees`, `ReconstructM`, `ReconstructN` |
+
+## Random BST model
+
+These modules apply the same per-tree identities `central_M_exec` and
+`central_N_exec` to the random BST model, where the keys `1, …, n` are inserted
+in a uniformly random order. They accompany a separate manuscript on this model
+(WiNF2026, cited as A2 in the source comments); that manuscript is not part of
+this artifact. Parts were ported from a Rocq development that is not included.
+
+| Result | Lean modules and representative theorems |
+|---|---|
+| BST weights and the law of `h` | `BstModel`: `bstE_one`, `bst_Pge`; `BstLimits`: `bst_Ph` |
+| BST weights as random insertion orders | `BstPerm`: `bst_perm_count`, `bst_perm_law` |
+| `h` and `L` read from the insertion times | `BstLemma1`: `lemma1_h`, `lemma1_L`; `BstRun`: `run_ge`, `run_eq` |
+| Moments of `h`, `L` and the comparison counts | `BstModel`: `bst_Eh`, `bst_VarL`, `bst_CovhL`, `bst_EAM`, `bst_EAN`, `bst_VarAN`, `bst_CovAMAN` |
+| Conditional moments and cumulants of `L` | `BstCond`: `bst_EqL`, `bst_EqL2`; `BstCumulant`: `bst_kappa3`, `bst_kappa4` |
+| Limit law of `h` and total variation | `BstLimits`: `bst_h_tendsto`, `bst_dTV`, `bst_dTV_event`; `BstAM`: `bst_AM_tendsto`, `bst_AM_dTV` |
+| Limits and error bounds of the moments | `BstLimits`: `bst_EAM_err`, `bst_VarAN_tendsto`, `bst_VarAN_err_le`, `bst_EAN_lt_EAM_iff` |
+| Gap `D = Cmp_M − Cmp_N` and small cases | `BstLimits`: `D_eq`, `bst_ED`, `bst_VarD`, `bst_outcome_three`; `BstAM`: `D_ge`; `UnifOutcome`: `unif_outcome_three` |
+| CLTs | `BstCLT`: `bst_leafCLT`, `bst_AN_CLT`, `bst_D_CLT` |
+
+The full list with one-line statements is in [`check-axioms.sh`](../lean/check-axioms.sh).
 
 ## Scope
 

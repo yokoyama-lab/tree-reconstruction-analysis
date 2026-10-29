@@ -130,6 +130,82 @@ THEOREMS=(
   "MakinenAnalysis.leafCLT_tendsto"           # Prop 11 as convergence in distribution
   "MakinenAnalysis.AN_CLT_tendsto"            # Thm 12 as convergence in distribution
   "MakinenAnalysis.gap_CLT_tendsto"           # Cor 13 as convergence in distribution
+  # The random BST model (WiNF2026 A2), ported from Rocq (2026-10-15).  The same
+  # per-tree identities central_M_exec / central_N_exec, averaged under bstW.
+  "MakinenAnalysis.bstE_one"                  # the BST weights sum to one (Rocq: mass_one)
+  "MakinenAnalysis.bst_Pge"                   # P(h >= m) = 1/m! (Rocq: law_general)
+  "MakinenAnalysis.bst_Eh"                    # E[h] = E_n (Rocq: Eh_closed)
+  "MakinenAnalysis.bst_Eh2"                   # E[h^2] = F_n (Rocq: Eh2_closed)
+  "MakinenAnalysis.bst_Varh"                  # Var[h] = F_n - E_n^2 (Rocq: Varh_closed)
+  "MakinenAnalysis.bst_EL"                    # E[L] = (n+1)/3, n >= 2 (Rocq: EL_closed)
+  "MakinenAnalysis.bst_EL2"                   # E[L^2]
+  "MakinenAnalysis.bst_VarL"                  # Var[L] = 2(n+1)/45, n >= 4 (Rocq: VarL_closed)
+  "MakinenAnalysis.bst_EhL"                   # E[hL] (Rocq: Ehl_closed)
+  "MakinenAnalysis.bst_CovhL"                 # Cov(h,L), n >= 2 (Rocq: Covq_closed)
+  "MakinenAnalysis.finalH_toPop_eq_rlen"      # the two descriptions of h agree
+  "MakinenAnalysis.bst_EAM"                   # E[A_M] = 3n - 1 - E_n (BST, the run's counter)
+  "MakinenAnalysis.bst_EAN"                   # E[A_N] = (7n+4)/3 - E_n, n >= 2
+  "MakinenAnalysis.bst_VarAN"                 # Var[A_N], n >= 4 (A2 Theorem 1)
+  "MakinenAnalysis.bst_CovAMAN"               # Cov(A_M, A_N), n >= 2
+  "MakinenAnalysis.bst_PAM_ge"                # P(A_M >= 3n-2-c) = 1 - 1/(c+2)!, n >= c+2
+  # The BST model, continued (2026-10-15): the permutation law, the limits, the CLTs.
+  "MakinenAnalysis.card_perms_range"          # n! insertion orders
+  "MakinenAnalysis.bst_perm_count"            # #{orders giving shape t} = n! * bstW t
+  "MakinenAnalysis.bst_perm_law"              # bstE = average over random-permutation insertion
+  "MakinenAnalysis.bst_Ph"                    # P(h=m) = m/(m+1)!, P(h=n) = 1/n!
+  "MakinenAnalysis.hasSum_Hpmf"               # H is a law
+  "MakinenAnalysis.hasSum_Hpmf_tail"          # P(H >= m) = 1/m!
+  "MakinenAnalysis.bst_h_tendsto"             # h ->d H
+  "MakinenAnalysis.bst_dTV"                   # sum_m |P(h=m)-P(H=m)| = 2/(n+1)!
+  "MakinenAnalysis.bst_dTV_event"             # |P(h in A) - P(H in A)| <= 1/(n+1)!
+  "MakinenAnalysis.bst_dTV_event_attained"    # ... attained at A = {n}
+  "MakinenAnalysis.hasSum_H_mean"             # E[H] = e - 1
+  "MakinenAnalysis.hasSum_H_sq"               # E[H^2] = e + 1
+  "MakinenAnalysis.hasSum_H_pgf"              # E[z^H] = (1+(z-1)e^z)/z
+  "MakinenAnalysis.tendsto_Ee"                # E_n -> e - 1
+  "MakinenAnalysis.tendsto_Fe"                # F_n -> e + 1
+  "MakinenAnalysis.bst_Varh_tendsto"          # Var[h] -> 3e - e^2
+  "MakinenAnalysis.bst_CovhL_tendsto"         # Cov(h,L) -> 2 - 5e/6
+  "MakinenAnalysis.bst_VarAN_tendsto"         # Var[A_N] - 2n/45 -> 2/45 + 14e/3 - e^2 - 4
+  "MakinenAnalysis.bst_CovAMAN_tendsto"       # Cov[A_M,A_N] -> 23e/6 - e^2 - 2
+  "MakinenAnalysis.bst_EAM_err"               # |E[A_M] - (3n-e)| <= 1/n!
+  "MakinenAnalysis.bst_VarAN_err_eq"          # the error of Var[A_N] in closed form
+  "MakinenAnalysis.bst_VarAN_err_le"          # ... at most 1/(n-1)!
+  "MakinenAnalysis.bst_VarAN_n10"             # ... below 2e-7 at n = 10
+  "MakinenAnalysis.bst_EAM_sub_tendsto"       # E[A_M] - (3n-4) -> 4 - e
+  "MakinenAnalysis.bst_ratio_tendsto"         # 1 - E[A_N]/E[A_M] -> 2/9
+  "MakinenAnalysis.bst_EAN_lt_EAM_iff"        # E[A_N] < E[A_M] iff n >= 4
+  "MakinenAnalysis.D_eq"                      # D = n - 2 - L
+  "MakinenAnalysis.bst_ED"                    # E[D] = (2n-7)/3
+  "MakinenAnalysis.bst_VarD"                  # Var[D] = 2(n+1)/45
+  "MakinenAnalysis.bst_PAM_max"               # P(A_M = 3n-2) = 1/2
+  "MakinenAnalysis.bst_outcome_three"         # win/tie/lose at n = 3
+  "MakinenAnalysis.bst_outcome_four"          # ... n = 4
+  "MakinenAnalysis.bst_outcome_five"          # ... n = 5
+  "MakinenAnalysis.bst_leafCLT"               # (L - n/3)/sqrt(2n/45) ->d N(0,1)
+  "MakinenAnalysis.bst_AN_CLT"                # (A_N - 7n/3)/sqrt(2n/45) ->d N(0,1)
+  "MakinenAnalysis.bst_D_CLT"                 # (D - 2n/3)/sqrt(2n/45) ->d N(0,1)
+  "MakinenAnalysis.before_iff_idxOf"          # "inserted before" = smaller insertion time
+  "MakinenAnalysis.lemma1_h"                  # A2 Lemma 1: h = final descending run of w
+  "MakinenAnalysis.lemma1_L"                  # A2 Lemma 1: L = number of peaks of w
+  "MakinenAnalysis.run_ge"                    # i.i.d. uniforms: P(first ascending run >= m) = 1/m!
+  "MakinenAnalysis.run_eq"                    # ... = m exactly with probability P(H = m)
+  "MakinenAnalysis.unif_outcome_three"        # uniform model win/tie/lose at n = 3
+  "MakinenAnalysis.unif_outcome_four"         # ... n = 4
+  "MakinenAnalysis.unif_outcome_five"         # ... n = 5
+  "MakinenAnalysis.bst_PgeL_top"              # E[L; h>=m] = 1/m!, n <= m+1 (Rocq: PgeL_top)
+  "MakinenAnalysis.bst_PgeL_bulk"             # E[L; h>=m] closed form, n >= m+2 (Rocq: PgeL_bulk)
+  "MakinenAnalysis.bst_EqL"                   # E[L | h=m], n >= m+3 (Rocq: cond_mean, EqL_closed)
+  "MakinenAnalysis.bst_PgeL2_closed"          # E[L^2; h>=m] closed form
+  "MakinenAnalysis.bst_EqL2"                  # E[L^2 | h=m] (conditional variance), n >= m+5
+  "MakinenAnalysis.bst_EL3"                   # E[L^3], n >= 6 (Rocq: EL3_closed)
+  "MakinenAnalysis.bst_kappa3"                # kappa_3(L) = -2(n+1)/945 (Rocq: KappaL3_closed)
+  "MakinenAnalysis.bst_EL4"                   # E[L^4], n >= 8 (Rocq: EL4_closed)
+  "MakinenAnalysis.bst_kappa4"                # kappa_4(L) = -22(n+1)/4725 (Rocq: KappaL4_closed)
+  "MakinenAnalysis.bst_AM_tendsto"            # (3n-1) - A_M ->d H (Table 1)
+  "MakinenAnalysis.bst_AM_dTV"                # ... with d_TV = 1/(n+1)!
+  "MakinenAnalysis.bst_VarAM_tendsto"         # Var[A_M] -> 3e - e^2 (Table 1)
+  "MakinenAnalysis.D_ge"                      # D >= floor(n/2) - 2 in integers, n >= 1
 )
 
 # A duplicated entry would inflate the count and hide a missing report.

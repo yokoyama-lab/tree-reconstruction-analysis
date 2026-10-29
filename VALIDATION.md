@@ -44,3 +44,16 @@ complement the formal proofs and do not prove the limit theorems.
 
 GitHub Actions results are shown in the repository's Actions tab and are
 separate from this local validation record.
+
+## Update 2026-10-29: random BST model modules
+
+After adding the ten `Bst*` / `UnifOutcome` modules (see [PROVENANCE.md](PROVENANCE.md)),
+the Lean checks were run again in this working tree on the same machine and toolchain.
+Mathlib and the 32 earlier modules were reused from the compiled cache of the
+development snapshot; the new and changed modules were compiled from source.
+
+- Lean: 187 / 187 selected theorems use only the allowed standard axioms.
+- Statement audit: all 187 types match `STATEMENTS.lock`.
+- Statement-checker self-test: 6 passed, 0 failed.
+- The Rocq development and the numerical checks are unchanged and were not rerun.
+- `tools/mutation-test.sh` was not rerun for this update.
