@@ -206,6 +206,11 @@ THEOREMS=(
   "MakinenAnalysis.bst_AM_dTV"                # ... with d_TV = 1/(n+1)!
   "MakinenAnalysis.bst_VarAM_tendsto"         # Var[A_M] -> 3e - e^2 (Table 1)
   "MakinenAnalysis.D_ge"                      # D >= floor(n/2) - 2 in integers, n >= 1
+  # One-pass model: worst-case optimality of M (2026-10-30)
+  "MakinenAnalysis.OnePass.onePass_lower"     # every one-pass algorithm: >= 2n-3 on adv n
+  "MakinenAnalysis.OnePass.costM_eq"          # M: cost + Q = (n-1) + S
+  "MakinenAnalysis.OnePass.costM_le"          # M: <= 2n-3 on every valid codeword
+  "MakinenAnalysis.OnePass.onePass_worst_case" # the two together
 )
 
 # A duplicated entry would inflate the count and hide a missing report.

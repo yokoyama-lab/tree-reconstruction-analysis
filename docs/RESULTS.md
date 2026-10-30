@@ -2,7 +2,7 @@
 
 The labels below are from the Japanese manuscript (2026-09-23). Numbering in
 earlier English drafts differs. Lean theorem names belong to `MakinenAnalysis`.
-The exact types of all 187 audited Lean theorems are in
+The exact types of all 191 audited Lean theorems are in
 [`STATEMENTS.lock`](../lean/STATEMENTS.lock).
 
 | Paper label / result | Lean modules and representative theorems | Rocq counterparts |
@@ -40,6 +40,24 @@ this artifact. Parts were ported from a Rocq development that is not included.
 | Limits and error bounds of the moments | `BstLimits`: `bst_EAM_err`, `bst_VarAN_tendsto`, `bst_VarAN_err_le`, `bst_EAN_lt_EAM_iff` |
 | Gap `D = Cmp_M − Cmp_N` and small cases | `BstLimits`: `D_eq`, `bst_ED`, `bst_VarD`, `bst_outcome_three`; `BstAM`: `D_ge`; `UnifOutcome`: `unif_outcome_three` |
 | CLTs | `BstCLT`: `bst_leafCLT`, `bst_AN_CLT`, `bst_D_CLT` |
+
+## One-pass lower bound
+
+`OnePass` models a one-pass algorithm, which fixes the parent of each element
+before reading the next. At each step it picks, from the whole history, an
+ordered decision tree over the possible pop counts `0, …, m` (questions "is
+`k ≥ j`?"). A leaf's depth is the number of informative label comparisons
+(comparisons with a sentinel are not counted).
+
+| Result | Theorem |
+|---|---|
+| Every one-pass algorithm needs `2n − 3` comparisons on the codeword `0, 1, …, 1` | `onePass_lower` |
+| M makes exactly `(n − 1) + S − Q` comparisons (`Q`: steps that empty the stack) | `costM_eq` |
+| M makes at most `2n − 3` comparisons on every codeword | `costM_le` |
+| Hence the worst-case optimum among one-pass algorithms is `2n − 3` (`n ≥ 2`) | `onePass_worst_case` |
+
+The reduction from actual programs to this model is a paper argument and is not
+formalized.
 
 The full list with one-line statements is in [`check-axioms.sh`](../lean/check-axioms.sh).
 

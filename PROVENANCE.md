@@ -23,6 +23,12 @@ and the mutation test. The proof text is unchanged; only module comments that
 pointed to local paths of unpublished sources were reworded, and one comment
 claiming novelty was made neutral. The 32 earlier modules are unchanged.
 
+On 2026-10-30 the module `OnePass` (worst-case optimality of M among one-pass
+algorithms, in an ordered-decision-tree model) was added from development commit
+`8517f85448cb3220fd22922761248d7e737258c1`, together with its audit-list entries, four statement-lock lines
+and a mutation suite. The module header was reworded where it pointed to an
+unpublished note. No earlier module changed.
+
 The paper's comparison-count notation is `Cmp_M` / `Cmp_N`. Identifiers such as
 `EAM`, `EAN`, `AN_CLT`, and numerical output labels `A_M` / `A_N` retain the
 original notation and denote the same quantities.

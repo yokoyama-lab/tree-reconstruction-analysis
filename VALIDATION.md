@@ -60,3 +60,18 @@ development snapshot; the new and changed modules were compiled from source.
   out-of-repository copy): 94 passed, 0 failed. All 80 injected faults were
   rejected (68 by the build, 7 by the statement lock, 5 by the axiom gate), and
   none of the 14 semantics-preserving refactors was flagged.
+
+## Update 2026-10-30: one-pass lower bound module
+
+After adding `OnePass` (see [PROVENANCE.md](PROVENANCE.md)), the Lean checks were
+run again in this working tree. Only `OnePass` and the root import file were
+compiled; the other modules were reused from the compiled cache.
+
+- Lean: 191 / 191 selected theorems use only the allowed standard axioms.
+- Statement audit: all 191 types match `STATEMENTS.lock`.
+- Statement-checker self-test: 6 passed, 0 failed.
+- Mutation test, new suite only (`SUITE=onepass`, run in the development
+  repository on an out-of-repository copy): 9 passed, 0 failed. All 8 injected
+  faults were rejected (6 by the build, 1 by the statement lock, 1 by the axiom
+  gate), and the semantics-preserving refactor was not flagged. The other five
+  suites were not rerun; the modules they mutate are unchanged.

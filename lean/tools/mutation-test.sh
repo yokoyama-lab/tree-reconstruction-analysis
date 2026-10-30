@@ -26,7 +26,8 @@
 #   SUITE=bst      the 2026-10-15 port of the random BST model (BstModel)
 #   SUITE=bstx     the BST continuation (BstPerm, BstLemma1, BstLimits, BstCLT)
 #   SUITE=bsty     the Rocq ports and the rest of A2 (BstRun, BstCond, BstCumulant, UnifOutcome, BstAM)
-#   SUITE=all      all five (the default)
+#   SUITE=onepass  the one-pass model, worst-case optimality of M (OnePass, 2026-10-30)
+#   SUITE=all      all six (the default)
 # Expect, for `moments`: 18 mutations, all detected; 3 refactors, none flagged.
 # Two of the weakening cases (W3, W5) are caught by the build rather than by the
 # lock -- see PORT-STATUS.md 5.5 for why that is a correct detection, not a miss.
@@ -40,6 +41,10 @@
 # bst_perm_count); 2 refactors, none flagged.
 # Expect, for `bsty`: 10 mutations, all detected (7 by the build, 1 by the axiom
 # gate, 2 by the lock); 2 refactors, none flagged.
+# Expect, for `onepass`: 8 mutations, all detected (6 by the build, 1 by the axiom
+# gate, 1 by the lock; OW2 weakens onePass_lower, which onePass_worst_case uses,
+# so the build catches it before the lock -- still a detection); 1 refactor,
+# not flagged.
 # (V3, like W3/W5, is caught by the build rather than the lock -- see
 # PORT-STATUS-EXEC.md 6.5 for why that is a correct detection, not a miss.)
 # See PORT-STATUS-EXEC.md.
@@ -67,7 +72,8 @@ BD="$MUT/MakinenAnalysis/BstCond.lean"
 BK="$MUT/MakinenAnalysis/BstCumulant.lean"
 UO="$MUT/MakinenAnalysis/UnifOutcome.lean"
 BA="$MUT/MakinenAnalysis/BstAM.lean"
-FILES=("$EM" "$TI" "$MB" "$XM" "$XS" "$XB" "$XE" "$BM" "$BP" "$BL" "$BC" "$B1" "$BR" "$BD" "$BK" "$UO" "$BA")
+OP="$MUT/MakinenAnalysis/OnePass.lean"
+FILES=("$EM" "$TI" "$MB" "$XM" "$XS" "$XB" "$XE" "$BM" "$BP" "$BL" "$BC" "$B1" "$BR" "$BD" "$BK" "$UO" "$BA" "$OP")
 for f in "${FILES[@]}"; do cp "$f" "$f.bak"; done
 restore() { for f in "${FILES[@]}"; do cp "$f.bak" "$f"; done; }
 trap restore EXIT
@@ -528,6 +534,48 @@ run_case "YR2 add a comment before bst_EqL" "$BD" \
   '-- (comment added by the mutation harness)
 theorem bst_EqL (n m : ℕ) (hm : 1 ≤ m) (h : m + 3 ≤ n) :' none
 fi   # SUITE bsty
+
+if [ "$SUITE" = "all" ] || [ "$SUITE" = "onepass" ]; then
+echo "== onepass: wrong-maths mutations (must break the build)"
+run_case "O1 lower bound 2n-3 -> 2n-2 (false: M meets 2n-3)" "$OP" \
+  'theorem onePass_lower (A : Alg) (n : ℕ) (hn : 2 ≤ n) : 2 * n - 3 ≤ cost A [] 1 (adv n) := by' \
+  'theorem onePass_lower (A : Alg) (n : ℕ) (hn : 2 ≤ n) : 2 * n - 2 ≤ cost A [] 1 (adv n) := by' build
+run_case "O2 M upper bound 2n-3 -> 2n-4" "$OP" \
+  '    cost algM [] 1 w ≤ 2 * n - 3 := by' \
+  '    cost algM [] 1 w ≤ 2 * n - 4 := by' build
+run_case "O3 middle leaf depth 2 -> 3" "$OP" \
+  '    2 ≤ depth t k := by
+  cases h with' \
+  '    3 ≤ depth t k := by
+  cases h with' build
+run_case "O4 adversary word all zeros" "$OP" \
+  'def adv (n : ℕ) : List ℕ := 0 :: List.replicate (n - 2) 1' \
+  'def adv (n : ℕ) : List ℕ := 0 :: List.replicate (n - 2) 0' build
+run_case "O5 costM_eq drops Q" "$OP" \
+  '    cost algM [] 1 w + qcount 1 w = w.length + w.sum := by' \
+  '    cost algM [] 1 w = w.length + w.sum := by' build
+
+echo "== onepass: a sorry (build green with a warning; the AXIOM gate must fire)"
+run_case "O6 adv_mem proved by sorry" "$OP" \
+  'theorem adv_mem (n : ℕ) (hn : 2 ≤ n) : adv n ∈ suffixes (n - 1) 1 := by' \
+  'theorem adv_mem (n : ℕ) (hn : 2 ≤ n) : adv n ∈ suffixes (n - 1) 1 := by
+  sorry
+example (n : ℕ) (hn : 2 ≤ n) : adv n ∈ suffixes (n - 1) 1 := by' axioms
+
+echo "== onepass: statement-weakening mutations (the LOCK must fire, or the build)"
+run_case "OW1 onePass_worst_case gains a spurious hypothesis" "$OP" \
+  'theorem onePass_worst_case (n : ℕ) (hn : 2 ≤ n) :' \
+  'theorem onePass_worst_case (n : ℕ) (hn : 2 ≤ n) (hx : 3 ≤ n) :' statements
+run_case "OW2 lower bound weakened to 2n-4" "$OP" \
+  'theorem onePass_lower (A : Alg) (n : ℕ) (hn : 2 ≤ n) : 2 * n - 3 ≤ cost A [] 1 (adv n) := by' \
+  'theorem onePass_lower (A : Alg) (n : ℕ) (hn : 2 ≤ n) : 2 * n - 4 ≤ cost A [] 1 (adv n) := by' statements
+
+echo "== onepass: semantics-preserving refactor (NO gate may fire)"
+run_case "OR1 add a comment before adv" "$OP" \
+  '/-- The adversary'"'"'s codeword' \
+  '-- (comment added by the mutation harness)
+/-- The adversary'"'"'s codeword' none
+fi   # SUITE onepass
 
 echo
 echo "passed: $PASS   failed: $FAIL"
