@@ -27,7 +27,8 @@
 #   SUITE=bstx     the BST continuation (BstPerm, BstLemma1, BstLimits, BstCLT)
 #   SUITE=bsty     the Rocq ports and the rest of A2 (BstRun, BstCond, BstCumulant, UnifOutcome, BstAM)
 #   SUITE=onepass  the one-pass model, worst-case optimality of M (OnePass, 2026-10-30)
-#   SUITE=all      all six (the default)
+#   SUITE=reduction  programs -> ordered trees -> actual trees (OnePassProg, OnePassBridge)
+#   SUITE=all      all seven (the default)
 # Expect, for `moments`: 18 mutations, all detected; 3 refactors, none flagged.
 # Two of the weakening cases (W3, W5) are caught by the build rather than by the
 # lock -- see PORT-STATUS.md 5.5 for why that is a correct detection, not a miss.
@@ -45,6 +46,10 @@
 # gate, 1 by the lock; OW2 weakens onePass_lower, which onePass_worst_case uses,
 # so the build catches it before the lock -- still a detection); 1 refactor,
 # not flagged.
+# Expect, for `reduction`: 7 mutations, all detected (6 by the build, 1 by the
+# axiom gate; PW1 weakens onePass_trees_opt, which onePass_trees_real uses, so
+# the build catches it before the lock -- still a detection); 1 refactor, not
+# flagged.
 # (V3, like W3/W5, is caught by the build rather than the lock -- see
 # PORT-STATUS-EXEC.md 6.5 for why that is a correct detection, not a miss.)
 # See PORT-STATUS-EXEC.md.
@@ -73,7 +78,10 @@ BK="$MUT/MakinenAnalysis/BstCumulant.lean"
 UO="$MUT/MakinenAnalysis/UnifOutcome.lean"
 BA="$MUT/MakinenAnalysis/BstAM.lean"
 OP="$MUT/MakinenAnalysis/OnePass.lean"
-FILES=("$EM" "$TI" "$MB" "$XM" "$XS" "$XB" "$XE" "$BM" "$BP" "$BL" "$BC" "$B1" "$BR" "$BD" "$BK" "$UO" "$BA" "$OP")
+PG="$MUT/MakinenAnalysis/OnePassProg.lean"
+PB="$MUT/MakinenAnalysis/OnePassBridge.lean"
+PP="$MUT/MakinenAnalysis/OnePassParent.lean"
+FILES=("$EM" "$TI" "$MB" "$XM" "$XS" "$XB" "$XE" "$BM" "$BP" "$BL" "$BC" "$B1" "$BR" "$BD" "$BK" "$UO" "$BA" "$OP" "$PG" "$PB" "$PP")
 for f in "${FILES[@]}"; do cp "$f" "$f.bak"; done
 restore() { for f in "${FILES[@]}"; do cp "$f.bak" "$f"; done; }
 trap restore EXIT
@@ -576,6 +584,45 @@ run_case "OR1 add a comment before adv" "$OP" \
   '-- (comment added by the mutation harness)
 /-- The adversary'"'"'s codeword' none
 fi   # SUITE onepass
+
+if [ "$SUITE" = "all" ] || [ "$SUITE" = "reduction" ]; then
+echo "== reduction: wrong-model mutations (must break the build)"
+run_case "P1 unread elements answered 'yes' (breaks one pass)" "$PB" \
+  '  decide (a ≤ i ∧ b ≤ i ∧ (ip t).getD a 0 < (ip t).getD b 0)' \
+  '  decide ((a ≤ i ∧ b ≤ i) → (ip t).getD a 0 < (ip t).getD b 0)' build
+run_case "P2 oracle direction flipped" "$PG" \
+  '  if a < b then decide (a ∉ stk (u.take b))' \
+  '  if a < b then decide (a ∈ stk (u.take b))' build
+run_case "P3 right parent off by one" "$PG" \
+  '  if k = 0 then ((stk p).headD 0, false) else ((stk p).getD (k - 1) 0, true)' \
+  '  if k = 0 then ((stk p).headD 0, false) else ((stk p).getD k 0, true)' build
+
+run_case "P5 tree parent: left and right swapped" "$PP" \
+  '    ctx :: (treePar l (q + 1) (q, false) ++ treePar r (q + 1 + l.numNodes) (q, true))' \
+  '    ctx :: (treePar l (q + 1) (q, true) ++ treePar r (q + 1 + l.numNodes) (q, false))' build
+run_case "P6 stack parent of a right child off by one" "$PP" \
+  '  if x = 0 then (s.headD 0, false) else (s.getD (x - 1) 0, true)' \
+  '  if x = 0 then (s.headD 0, false) else (s.getD x 0, true)' build
+
+echo "== reduction: a sorry (the AXIOM gate must fire)"
+run_case "P4 lt_ip proved by sorry" "$PB" \
+  '    lt (toPop t) a b = decide ((ip t).getD a 0 < (ip t).getD b 0) := by' \
+  '    lt (toPop t) a b = decide ((ip t).getD a 0 < (ip t).getD b 0) := by
+  sorry
+example (t : T) (ht : t ≠ .nil) (a b : ℕ) (ha : a < t.numNodes) (hb : b < t.numNodes) :
+    lt (toPop t) a b = decide ((ip t).getD a 0 < (ip t).getD b 0) := by' axioms
+
+echo "== reduction: statement weakening (the LOCK must fire)"
+run_case "PW1 onePass_trees_opt gains a spurious hypothesis" "$PB" \
+  'theorem onePass_trees_opt (n : ℕ) (hn : 2 ≤ n) :' \
+  'theorem onePass_trees_opt (n : ℕ) (hn : 2 ≤ n) (hx : 3 ≤ n) :' statements
+
+echo "== reduction: semantics-preserving refactor (NO gate may fire)"
+run_case "PR1 add a comment before lt_ip" "$PB" \
+  'theorem lt_ip (t : T) (ht : t ≠ .nil)' \
+  '-- (comment added by the mutation harness)
+theorem lt_ip (t : T) (ht : t ≠ .nil)' none
+fi   # SUITE reduction
 
 echo
 echo "passed: $PASS   failed: $FAIL"

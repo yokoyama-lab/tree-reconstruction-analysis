@@ -75,3 +75,19 @@ compiled; the other modules were reused from the compiled cache.
   faults were rejected (6 by the build, 1 by the statement lock, 1 by the axiom
   gate), and the semantics-preserving refactor was not flagged. The other five
   suites were not rerun; the modules they mutate are unchanged.
+
+## Update 2026-10-31: reduction from programs on actual trees
+
+After adding `OnePassProg`, `OnePassBridge` and `OnePassParent` (see
+[PROVENANCE.md](PROVENANCE.md)), the Lean checks were run again in this working
+tree. Only these three modules and the root import file were compiled; the
+other modules were reused from the compiled cache.
+
+- Lean: 208 / 208 selected theorems use only the allowed standard axioms.
+- Statement audit: all 208 types match `STATEMENTS.lock`.
+- Statement-checker self-test: 6 passed, 0 failed.
+- Mutation test, new suite only (`SUITE=reduction`, run in the development
+  repository on an out-of-repository copy of identical sources): 8 passed,
+  0 failed. All 7 injected faults were rejected (6 by the build, 1 by the axiom
+  gate), and the semantics-preserving refactor was not flagged. The other
+  suites were not rerun; the modules they mutate are unchanged.

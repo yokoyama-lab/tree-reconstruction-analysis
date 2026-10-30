@@ -29,6 +29,14 @@ algorithms, in an ordered-decision-tree model) was added from development commit
 and a mutation suite. The module header was reworded where it pointed to an
 unpublished note. No earlier module changed.
 
+On 2026-10-31 the modules `OnePassProg`, `OnePassBridge` and `OnePassParent`
+(the reduction from one-pass comparison programs on actual trees to the
+ordered-decision-tree model, and the correctness of the stack parent for all
+trees) were added from development commit
+`237ac508d0d9abb11725e6bc96e244f0310da37b`, with 17 audit-list entries,
+17 statement-lock lines and an extended mutation suite. One module comment that
+named a file wrongly was corrected. No earlier module changed.
+
 The paper's comparison-count notation is `Cmp_M` / `Cmp_N`. Identifiers such as
 `EAM`, `EAN`, `AN_CLT`, and numerical output labels `A_M` / `A_N` retain the
 original notation and denote the same quantities.

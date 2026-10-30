@@ -42,3 +42,6 @@ import MakinenAnalysis.BstCumulant
 import MakinenAnalysis.UnifOutcome
 import MakinenAnalysis.BstAM
 import MakinenAnalysis.OnePass
+import MakinenAnalysis.OnePassProg
+import MakinenAnalysis.OnePassBridge
+import MakinenAnalysis.OnePassParent

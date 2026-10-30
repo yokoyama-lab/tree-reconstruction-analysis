@@ -2,7 +2,7 @@
 
 The labels below are from the Japanese manuscript (2026-09-23). Numbering in
 earlier English drafts differs. Lean theorem names belong to `MakinenAnalysis`.
-The exact types of all 191 audited Lean theorems are in
+The exact types of all 208 audited Lean theorems are in
 [`STATEMENTS.lock`](../lean/STATEMENTS.lock).
 
 | Paper label / result | Lean modules and representative theorems | Rocq counterparts |
@@ -56,8 +56,24 @@ ordered decision tree over the possible pop counts `0, …, m` (questions "is
 | M makes at most `2n − 3` comparisons on every codeword | `costM_le` |
 | Hence the worst-case optimum among one-pass algorithms is `2n − 3` (`n ≥ 2`) | `onePass_worst_case` |
 
-The reduction from actual programs to this model is a paper argument and is not
-formalized.
+`OnePassProg`, `OnePassBridge` and `OnePassParent` carry the bound over to
+programs run on actual trees. A program asks "is the label of `a` smaller than
+that of `b`?" about elements already read (a question about an unread element
+is answered "no") and outputs the parent of each element before reading the
+next.
+
+| Result | Theorem |
+|---|---|
+| Each question is monotone or antitone in the pop count; a step tree becomes an ordered tree, no deeper | `lt_mono_or_anti`, `extract_depth` |
+| A correct program asks at least as many questions as the extracted ordered trees | `progCost_ge`, `prog_lower` |
+| The stack run on the labels of `ip t` pops the codeword of `t` | `runL_ip` |
+| i-p sequences avoid the pattern `231`; the oracle is the order of the labels | `ipo_noPat`, `lt_ip` |
+| The parent chosen by the stack is the parent in the tree, for every tree | `tree_run`, `parentOf_eq_treePar` |
+| Every correct one-pass program makes `2n − 3` comparisons on some tree; M makes at most `2n − 3` | `onePass_trees_real` |
+
+The remaining modelling choice is that a program also knows the codeword
+prefix of the elements read so far; a correct program can compute it from its
+own outputs, so this only strengthens the lower bound.
 
 The full list with one-line statements is in [`check-axioms.sh`](../lean/check-axioms.sh).
 

@@ -211,6 +211,26 @@ THEOREMS=(
   "MakinenAnalysis.OnePass.costM_eq"          # M: cost + Q = (n-1) + S
   "MakinenAnalysis.OnePass.costM_le"          # M: <= 2n-3 on every valid codeword
   "MakinenAnalysis.OnePass.onePass_worst_case" # the two together
+  # One-pass programs (OnePassProg): the reduction from comparison programs
+  "MakinenAnalysis.OnePass.lt_mono_or_anti"   # each question is monotone or antitone in k
+  "MakinenAnalysis.OnePass.parentOf_inj"      # distinct pop counts, distinct parents
+  "MakinenAnalysis.OnePass.extract_depth"     # step tree -> ordered tree, no deeper
+  "MakinenAnalysis.OnePass.progCost_ge"       # correct program >= extracted Alg
+  "MakinenAnalysis.OnePass.prog_lower"        # every correct program: >= 2n-3 on some input
+  "MakinenAnalysis.OnePass.progM_correct"     # M as a program is correct
+  "MakinenAnalysis.OnePass.onePass_programs"  # optimum over correct programs = 2n-3
+  # One-pass programs on actual trees (OnePassBridge)
+  "MakinenAnalysis.OnePass.runL_ip"           # the run on ip t pops 0 :: toPop t
+  "MakinenAnalysis.OnePass.runL_stack"        # the label stack keeps the elements not overtaken
+  "MakinenAnalysis.OnePass.ipo_noPat"         # i-p sequences avoid the pattern 231
+  "MakinenAnalysis.OnePass.lt_ip"             # the oracle is the order of the labels
+  "MakinenAnalysis.OnePass.onePass_trees"     # every correct program on trees: >= 2n-3
+  "MakinenAnalysis.OnePass.progM_correctIP"   # M is correct on actual trees
+  "MakinenAnalysis.OnePass.onePass_trees_opt" # optimum on actual trees = 2n-3
+  # The stack parent is the tree parent (OnePassParent)
+  "MakinenAnalysis.OnePass.tree_run"          # the run on a subtree picks the tree parents
+  "MakinenAnalysis.OnePass.parentOf_eq_treePar" # parentOf = the actual parent, all trees
+  "MakinenAnalysis.OnePass.onePass_trees_real" # optimum with the actual parents = 2n-3
 )
 
 # A duplicated entry would inflate the count and hide a missing report.

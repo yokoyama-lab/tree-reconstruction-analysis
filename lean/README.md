@@ -13,7 +13,7 @@ SKIP_BUILD=1 bash check-statements.sh
 SKIP_BUILD=1 bash test-check-statements.sh
 ```
 
-The axiom checker builds the library and audits 191 selected theorems, allowing
+The axiom checker builds the library and audits 208 selected theorems, allowing
 only `propext`, `Classical.choice`, and `Quot.sound`. The statement checker
 compares their elaborated types with `STATEMENTS.lock`; changing a theorem's
 hypotheses or conclusion requires a deliberate review and lock update.
