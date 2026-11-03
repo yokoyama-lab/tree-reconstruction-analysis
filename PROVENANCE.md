@@ -37,6 +37,15 @@ trees) were added from development commit
 17 statement-lock lines and an extended mutation suite. One module comment that
 named a file wrongly was corrected. No earlier module changed.
 
+On 2026-11-03 the modules `UniformBound` (the uniform estimate
+`P(h = m) ≤ m 2^{-m}` used for `thm:Mlimit`), `SentinelCount` (the mean number
+of sentinel comparisons and M's mean informative comparisons) and
+`StackRecords` (M's informative comparisons `2n − h − r` on any sequence over a
+linear order) were added from development commit
+`1098cc52a3516b52ca08187cf76f2e4df836c91e`, with 8 audit-list entries,
+8 statement-lock lines and three mutation suites. One module comment that
+pointed to an unpublished note was reworded. No earlier module changed.
+
 The paper's comparison-count notation is `Cmp_M` / `Cmp_N`. Identifiers such as
 `EAM`, `EAN`, `AN_CLT`, and numerical output labels `A_M` / `A_N` retain the
 original notation and denote the same quantities.

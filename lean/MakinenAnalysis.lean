@@ -45,3 +45,6 @@ import MakinenAnalysis.OnePass
 import MakinenAnalysis.OnePassProg
 import MakinenAnalysis.OnePassBridge
 import MakinenAnalysis.OnePassParent
+import MakinenAnalysis.UniformBound
+import MakinenAnalysis.SentinelCount
+import MakinenAnalysis.StackRecords

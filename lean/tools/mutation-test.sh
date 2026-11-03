@@ -28,7 +28,10 @@
 #   SUITE=bsty     the Rocq ports and the rest of A2 (BstRun, BstCond, BstCumulant, UnifOutcome, BstAM)
 #   SUITE=onepass  the one-pass model, worst-case optimality of M (OnePass, 2026-10-30)
 #   SUITE=reduction  programs -> ordered trees -> actual trees (OnePassProg, OnePassBridge)
-#   SUITE=all      all seven (the default)
+#   SUITE=uniform  the uniform bound P(h = m) <= m 2^{-m} (UniformBound, 2026-10-31)
+#   SUITE=sentinel the sentinel count Q and M's informative mean (SentinelCount, 2026-10-31)
+#   SUITE=records  M's comparisons on any sequence, 2n - h - r (StackRecords, 2026-11-02)
+#   SUITE=all      all ten (the default)
 # Expect, for `moments`: 18 mutations, all detected; 3 refactors, none flagged.
 # Two of the weakening cases (W3, W5) are caught by the build rather than by the
 # lock -- see PORT-STATUS.md 5.5 for why that is a correct detection, not a miss.
@@ -50,6 +53,12 @@
 # axiom gate; PW1 weakens onePass_trees_opt, which onePass_trees_real uses, so
 # the build catches it before the lock -- still a detection); 1 refactor, not
 # flagged.
+# Expect, for `uniform`: 3 mutations, all detected (2 by the build, 1 by the
+# lock); 1 refactor, not flagged.
+# Expect, for `sentinel`: 4 mutations, all detected (3 by the build, 1 by the
+# lock); 1 refactor, not flagged.
+# Expect, for `records`: 4 mutations, all detected (3 by the build, 1 by the
+# lock); 1 refactor, not flagged.
 # (V3, like W3/W5, is caught by the build rather than the lock -- see
 # PORT-STATUS-EXEC.md 6.5 for why that is a correct detection, not a miss.)
 # See PORT-STATUS-EXEC.md.
@@ -81,7 +90,10 @@ OP="$MUT/MakinenAnalysis/OnePass.lean"
 PG="$MUT/MakinenAnalysis/OnePassProg.lean"
 PB="$MUT/MakinenAnalysis/OnePassBridge.lean"
 PP="$MUT/MakinenAnalysis/OnePassParent.lean"
-FILES=("$EM" "$TI" "$MB" "$XM" "$XS" "$XB" "$XE" "$BM" "$BP" "$BL" "$BC" "$B1" "$BR" "$BD" "$BK" "$UO" "$BA" "$OP" "$PG" "$PB" "$PP")
+UB="$MUT/MakinenAnalysis/UniformBound.lean"
+SC="$MUT/MakinenAnalysis/SentinelCount.lean"
+SK="$MUT/MakinenAnalysis/StackRecords.lean"
+FILES=("$EM" "$TI" "$MB" "$XM" "$XS" "$XB" "$XE" "$BM" "$BP" "$BL" "$BC" "$B1" "$BR" "$BD" "$BK" "$UO" "$BA" "$OP" "$PG" "$PB" "$PP" "$UB" "$SC" "$SK")
 for f in "${FILES[@]}"; do cp "$f" "$f.bak"; done
 restore() { for f in "${FILES[@]}"; do cp "$f.bak" "$f"; done; }
 trap restore EXIT
@@ -623,6 +635,75 @@ run_case "PR1 add a comment before lt_ip" "$PB" \
   '-- (comment added by the mutation harness)
 theorem lt_ip (t : T) (ht : t ≠ .nil)' none
 fi   # SUITE reduction
+
+if [ "$SUITE" = "all" ] || [ "$SUITE" = "uniform" ]; then
+echo "== uniform: wrong-maths mutations (must break the build)"
+run_case "U1 bound sharpened to m 2^{-(m+1)} (false at n = m = 2)" "$UB" \
+  'theorem hProb_le_uniform (n m : ℕ) (hn : 2 ≤ n) : hProb n m ≤ (m : ℝ) * (1 / 2 : ℝ) ^ m := by' \
+  'theorem hProb_le_uniform (n m : ℕ) (hn : 2 ≤ n) : hProb n m ≤ (m : ℝ) * (1 / 2 : ℝ) ^ (m + 1) := by' build
+run_case "U2 hypothesis weakened to n >= 1 (false at n = 1)" "$UB" \
+  'theorem hProb_le_uniform (n m : ℕ) (hn : 2 ≤ n) : hProb n m ≤ (m : ℝ) * (1 / 2 : ℝ) ^ m := by' \
+  'theorem hProb_le_uniform (n m : ℕ) (hn : 1 ≤ n) : hProb n m ≤ (m : ℝ) * (1 / 2 : ℝ) ^ m := by' build
+
+echo "== uniform: statement weakening (the LOCK must fire)"
+run_case "UW1 hProb_le_uniform gains a spurious hypothesis" "$UB" \
+  'theorem hProb_le_uniform (n m : ℕ) (hn : 2 ≤ n) : hProb n m ≤ (m : ℝ) * (1 / 2 : ℝ) ^ m := by' \
+  'theorem hProb_le_uniform (n m : ℕ) (hn : 2 ≤ n) (hx : 3 ≤ n) : hProb n m ≤ (m : ℝ) * (1 / 2 : ℝ) ^ m := by' statements
+
+echo "== uniform: semantics-preserving refactor (NO gate may fire)"
+run_case "UR1 add a comment before hProb_le_ladder" "$UB" \
+  '/-- The ladder bound for `1 ≤ m ≤ n`. -/' \
+  '-- (comment added by the mutation harness)
+/-- The ladder bound for `1 ≤ m ≤ n`. -/' none
+fi   # SUITE uniform
+
+if [ "$SUITE" = "all" ] || [ "$SUITE" = "sentinel" ]; then
+echo "== sentinel: wrong-maths mutations (must break the build)"
+run_case "S1 key identity shifted to height h+1" "$SC" \
+  'theorem qsum_succ : ∀ (ℓ h : ℕ), Qsum (ℓ + 1) h = (suffixes ℓ (h + 2)).card := by' \
+  'theorem qsum_succ : ∀ (ℓ h : ℕ), Qsum (ℓ + 1) h = (suffixes ℓ (h + 1)).card := by' build
+run_case "S2 E[Q] numerator 2(n-1) -> 2n" "$SC" \
+  '    (n + 2) * (∑ w ∈ suffixes (n - 1) 1, OnePass.qcount 1 w) = 2 * (n - 1) * catalan n := by' \
+  '    (n + 2) * (∑ w ∈ suffixes (n - 1) 1, OnePass.qcount 1 w) = 2 * n * catalan n := by' build
+run_case "S3 informative mean 2n(n-1) -> 2n n" "$SC" \
+  '      = 2 * n * (n - 1) * catalan n := by' \
+  '      = 2 * n * n * catalan n := by' build
+
+echo "== sentinel: statement weakening (the LOCK must fire)"
+run_case "SW1 sum_costM_rational gains a spurious hypothesis" "$SC" \
+  'theorem sum_costM_rational (n : ℕ) (hn : 1 ≤ n) :' \
+  'theorem sum_costM_rational (n : ℕ) (hn : 1 ≤ n) (hx : 2 ≤ n) :' statements
+
+echo "== sentinel: semantics-preserving refactor (NO gate may fire)"
+run_case "SR1 add a comment before sum_qcount_rational" "$SC" \
+  'theorem sum_qcount_rational (n : ℕ) (hn : 1 ≤ n) :' \
+  '-- (comment added by the mutation harness)
+theorem sum_qcount_rational (n : ℕ) (hn : 1 ≤ n) :' none
+fi   # SUITE sentinel
+
+if [ "$SUITE" = "all" ] || [ "$SUITE" = "records" ]; then
+echo "== records: wrong-maths mutations (must break the build)"
+run_case "K1 records counted non-strictly (ties break the identity)" "$SK" \
+  '  | P, x :: xs => (if ∀ y ∈ P, y < x then 1 else 0) + records (P ++ [x]) xs' \
+  '  | P, x :: xs => (if ∀ y ∈ P, y ≤ x then 1 else 0) + records (P ++ [x]) xs' build
+run_case "K2 cost also counts the sentinel comparison" "$SK" \
+  '  | s, x :: xs => min (pops s x + 1) s.length + cost (push s x) xs' \
+  '  | s, x :: xs => (pops s x + 1) + cost (push s x) xs' build
+run_case "K3 bound sharpened to 2n - 4 (false at n = 2)" "$SK" \
+  'theorem costM_le_seq (A : List α) (hA : 2 ≤ A.length) : cost [] A ≤ 2 * A.length - 3 := by' \
+  'theorem costM_le_seq (A : List α) (hA : 2 ≤ A.length) : cost [] A ≤ 2 * A.length - 4 := by' build
+
+echo "== records: statement weakening (the LOCK must fire)"
+run_case "KW1 costM_le_seq gains a spurious hypothesis" "$SK" \
+  'theorem costM_le_seq (A : List α) (hA : 2 ≤ A.length) : cost [] A ≤ 2 * A.length - 3 := by' \
+  'theorem costM_le_seq (A : List α) (hA : 2 ≤ A.length) (hx : 3 ≤ A.length) : cost [] A ≤ 2 * A.length - 3 := by' statements
+
+echo "== records: semantics-preserving refactor (NO gate may fire)"
+run_case "KR1 add a comment before costM_add_records" "$SK" \
+  'theorem costM_add_records (A : List α) :' \
+  '-- (comment added by the mutation harness)
+theorem costM_add_records (A : List α) :' none
+fi   # SUITE records
 
 echo
 echo "passed: $PASS   failed: $FAIL"

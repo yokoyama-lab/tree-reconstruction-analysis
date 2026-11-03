@@ -91,3 +91,25 @@ other modules were reused from the compiled cache.
   0 failed. All 7 injected faults were rejected (6 by the build, 1 by the axiom
   gate), and the semantics-preserving refactor was not flagged. The other
   suites were not rerun; the modules they mutate are unchanged.
+
+## Update 2026-11-03: uniform bound, sentinel count and records
+
+After adding `UniformBound`, `SentinelCount` and `StackRecords` (see
+[PROVENANCE.md](PROVENANCE.md)), the Lean checks were run again in this working
+tree. Only these three modules and the root import file were compiled; the
+other modules were reused from the compiled cache.
+
+- Lean: 216 / 216 selected theorems use only the allowed standard axioms
+  (the three `StackRecords` theorems use only `propext` and `Quot.sound`).
+- Statement audit: all 216 types match `STATEMENTS.lock`.
+- Statement-checker self-test: 6 passed, 0 failed.
+- Mutation test, new suites only, run on an out-of-repository copy of this
+  working tree:
+  - `SUITE=uniform`: 4 passed, 0 failed (2 faults rejected by the build, 1 by
+    the statement lock; the refactor was not flagged).
+  - `SUITE=sentinel`: 5 passed, 0 failed (3 by the build, 1 by the statement
+    lock; the refactor was not flagged).
+  - `SUITE=records`: 5 passed, 0 failed (3 by the build, 1 by the statement
+    lock; the refactor was not flagged).
+
+  The other suites were not rerun; the modules they mutate are unchanged.

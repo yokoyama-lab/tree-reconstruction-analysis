@@ -2,7 +2,7 @@
 
 The labels below are from the Japanese manuscript (2026-09-23). Numbering in
 earlier English drafts differs. Lean theorem names belong to `MakinenAnalysis`.
-The exact types of all 208 audited Lean theorems are in
+The exact types of all 216 audited Lean theorems are in
 [`STATEMENTS.lock`](../lean/STATEMENTS.lock).
 
 | Paper label / result | Lean modules and representative theorems | Rocq counterparts |
@@ -15,7 +15,7 @@ The exact types of all 208 audited Lean theorems are in
 | `cor:avg`: mean comparisons | `ExecBridge`: `EAM_exec_rational_trees`, `EAN_exec_rational_trees`; `Expansions`: `EAM_expansion`, `EAN_expansion` | `ReconstructES`: `EAM_rational`, `EAN_rational` |
 | `prop:varcov`: variances and covariance | `ExactMoments`: `VarP2_rational`, `CovSP2_rational`; `MomentBridge`: `VarS_eq`, `VarP2_eq`, `CovSP2_eq`, `VarAN_eq` | `ReconstructES2`: `VarS_catalan`; `ReconstructES3`: `VarP2_rational`, `CovSP2_rational` |
 | `thm:vardich`: variance asymptotics | `Asymptotics`: `VarS_asymp`, `VarAN_asymp`, `CovSP2_asymp`; `Expansions`: `VarS_expansion`, `VarAN_expansion` | Exact formulas above |
-| `thm:Mlimit`: negative-binomial limit | `Asymptotics`: `thm_Mlimit`, `thm_Mlimit_count` | — |
+| `thm:Mlimit`: negative-binomial limit | `Asymptotics`: `thm_Mlimit`, `thm_Mlimit_count`; `UniformBound`: `hProb_le_uniform` (the uniform estimate `P(h = m) ≤ m 2^{-m}`, `n ≥ 2`) | — |
 | `cor:Mconc`: worst-case concentration | `Concentration`: `AM_worst_case_limit`, `AM_concentration` | `ReconstructBounds`: `M_worst` (deterministic bound) |
 | `prop:leafclt`: leaf-count CLT | `FinalAssembly`: `leafCLT_charFun`; `WeakConvergence`: `leafCLT_tendsto` | — |
 | `thm:Nclt`: comparison-count CLT | `FinalAssembly`: `AN_CLT_charFun`; `WeakConvergence`: `AN_CLT_tendsto` | — |
@@ -74,6 +74,25 @@ next.
 The remaining modelling choice is that a program also knows the codeword
 prefix of the elements read so far; a correct program can compute it from its
 own outputs, so this only strengthens the lower bound.
+
+### Informative comparisons of M
+
+`SentinelCount` counts the steps `Q` that empty the stack (the comparisons
+with the sentinel) under the uniform Catalan model, and `StackRecords` writes
+M's informative comparisons on any finite sequence over a linear order.
+Here `h` is the final stack height and `r` the number of left-to-right maxima;
+on i-p sequences `r = Q + 1` is the number of nodes on the rightmost path.
+The mean of `r` itself is classical (Rotem, Discrete Math. 33 (1981),
+Theorem 5).
+
+| Result | Theorem |
+|---|---|
+| Summing `Q` over the words of length `ℓ + 1` read from height `h` gives the number of words of length `ℓ` read from height `h + 2` | `qsum_succ` |
+| `Σ Q + C_n = Σ h` | `sum_qcount_add_catalan` |
+| `E[Q] = 2(n − 1)/(n + 2)` | `sum_qcount_rational` |
+| Mean informative comparisons of M: `2n(n − 1)/(n + 2)` | `sum_costM_rational` |
+| On any sequence of length `n`: comparisons `+ h + r = 2n` | `costM_add_records` |
+| `h + r ≥ 3` for `n ≥ 2`, hence at most `2n − 3` comparisons | `stackRecords_ge_three`, `costM_le_seq` |
 
 The full list with one-line statements is in [`check-axioms.sh`](../lean/check-axioms.sh).
 

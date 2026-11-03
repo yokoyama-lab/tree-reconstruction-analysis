@@ -231,6 +231,17 @@ THEOREMS=(
   "MakinenAnalysis.OnePass.tree_run"          # the run on a subtree picks the tree parents
   "MakinenAnalysis.OnePass.parentOf_eq_treePar" # parentOf = the actual parent, all trees
   "MakinenAnalysis.OnePass.onePass_trees_real" # optimum with the actual parents = 2n-3
+  # The uniform bound of thm:Mlimit (UniformBound)
+  "MakinenAnalysis.hProb_le_uniform"          # P(h = m) <= m 2^{-m}, n >= 2
+  # Sentinel comparisons and M's informative comparisons (SentinelCount)
+  "MakinenAnalysis.qsum_succ"                 # sum of Q over words = number of words from h+2
+  "MakinenAnalysis.sum_qcount_add_catalan"    # sum Q + C_n = sum h
+  "MakinenAnalysis.sum_qcount_rational"       # E[Q] = 2(n-1)/(n+2)
+  "MakinenAnalysis.sum_costM_rational"        # M's informative comparisons: mean 2n(n-1)/(n+2)
+  # M's informative comparisons on any sequence: 2n - h - r (StackRecords)
+  "MakinenAnalysis.StackRecords.costM_add_records"     # cost + h + r = 2n, any list over a linear order
+  "MakinenAnalysis.StackRecords.stackRecords_ge_three" # h + r >= 3 for n >= 2
+  "MakinenAnalysis.StackRecords.costM_le_seq"          # cost <= 2n - 3 for n >= 2
 )
 
 # A duplicated entry would inflate the count and hide a missing report.
