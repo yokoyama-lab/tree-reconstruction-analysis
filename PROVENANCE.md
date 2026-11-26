@@ -46,6 +46,14 @@ linear order) were added from development commit
 8 statement-lock lines and three mutation suites. One module comment that
 pointed to an unpublished note was reworded. No earlier module changed.
 
+On 2026-11-26 the module `SpineEquidist` (Lemma 3 of the camera-ready Japanese
+paper: the final stack height `h` and the rightmost path length plus one, `R + 1`,
+are equidistributed and both counted by the ballot numbers, proved by a
+node-count-preserving bijection on trees) was added from development commit
+`7e0adc9f26cd9647356ead26fcb5851fa25f2db7`, with 4 audit-list entries, 4 statement-lock lines and a mutation
+suite. One line of the module header that named an unpublished manuscript file
+was reworded. No earlier module changed.
+
 The paper's comparison-count notation is `Cmp_M` / `Cmp_N`. Identifiers such as
 `EAM`, `EAN`, `AN_CLT`, and numerical output labels `A_M` / `A_N` retain the
 original notation and denote the same quantities.

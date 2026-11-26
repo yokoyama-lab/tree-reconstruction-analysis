@@ -1,14 +1,15 @@
 # Paper-to-proof correspondence
 
-The labels below are from the Japanese manuscript (2026-09-23). Numbering in
+The labels below are from the Japanese manuscript (camera-ready, 2026-11-26). Numbering in
 earlier English drafts differs. Lean theorem names belong to `MakinenAnalysis`.
-The exact types of all 216 audited Lean theorems are in
+The exact types of all 220 audited Lean theorems are in
 [`STATEMENTS.lock`](../lean/STATEMENTS.lock).
 
 | Paper label / result | Lean modules and representative theorems | Rocq counterparts |
 |---|---|---|
 | `lem:bij`: codewords and final height | `TreeIdentities`: `toPop_bijOn`, `finalH_add_sum_numNodes` | `Codewords`: `bijection_decode_encode`, `height_eq_n_minus_S` |
 | `lem:ballot`: ballot distribution | `BallotCount`, `Asymptotics`: `card_suffixes_eq_catalan`, `hProb_eq_count` | Tree/codeword bijection in `Codewords` |
+| `lem:equidist`: final stack height and rightmost path length are equidistributed (camera-ready) | `SpineEquidist`: `lemma_equidist`, `card_spine_eq_card_rlen`, `card_rlen_eq_W`, `rlen_chi` | — |
 | `lem:leaves`: double pops and leaves | `TreeIdentities`: `P2_add_one_eq_leaves` | `Trees`: `P2_identity`; `ReconstructMoments`: `full_leaves` |
 | `cor:central`: execution comparison counts | `ExecBridge`: `cmpsM_exec`, `cmpsN_exec`, `central_M_exec`, `central_N_exec` | `ReconstructM`, `ReconstructN`: `total_comparisons_M_count`, `total_comparisons_N_count` |
 | `thm:sums`: totals and expectations | `ExactMoments`: `sum_pops`, `sum_P2`, `ES_rational`, `EP2_rational` | `ReconstructES`: `ES_rational`; `ReconstructAverage`: `EP2_rational` |

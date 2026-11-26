@@ -1,6 +1,6 @@
 # Lean proofs
 
-The library contains 49 modules plus `MakinenAnalysis.lean`, using Lean 4.31.0
+The library contains 50 modules plus `MakinenAnalysis.lean`, using Lean 4.31.0
 and the Mathlib revision pinned in `lake-manifest.json`. It covers execution
 comparison counts, structural identities, exact moments, explicit asymptotic
 remainders, concentration and limit distributions. The ten modules `Bst*` and
@@ -13,7 +13,7 @@ SKIP_BUILD=1 bash check-statements.sh
 SKIP_BUILD=1 bash test-check-statements.sh
 ```
 
-The axiom checker builds the library and audits 216 selected theorems, allowing
+The axiom checker builds the library and audits 220 selected theorems, allowing
 only `propext`, `Classical.choice`, and `Quot.sound`. The statement checker
 compares their elaborated types with `STATEMENTS.lock`; changing a theorem's
 hypotheses or conclusion requires a deliberate review and lock update.

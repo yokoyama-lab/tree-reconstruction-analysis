@@ -15,7 +15,7 @@ Tomoki Uda, and Tetsuo Yokoyama** (Nanzan University).
 
 | Directory | Contents |
 |---|---|
-| [`lean/`](lean/) | Lean 4 / Mathlib proofs of the structural identities, execution counts, exact moments, asymptotic expansions, and limit laws, under the uniform Catalan and random BST models, the one-pass lower bound with its reduction from programs on actual trees, and the comparison count `2n − h − r` of M on any sequence; 49 modules plus the root library; 216 audited theorems. |
+| [`lean/`](lean/) | Lean 4 / Mathlib proofs of the structural identities, execution counts, exact moments, asymptotic expansions, and limit laws, under the uniform Catalan and random BST models, the one-pass lower bound with its reduction from programs on actual trees, the comparison count `2n − h − r` of M on any sequence, and the equidistribution of the final stack height and the rightmost path length; 50 modules plus the root library; 220 audited theorems. |
 | [`coq/`](coq/) | Rocq proofs of reconstruction correctness and exact/algebraic results; 39 modules; 80 audited theorems. |
 | [`scripts/`](scripts/) | Independent enumeration, exact rational dynamic programming, finite-size distribution computation, and Rémy sampling. |
 

@@ -31,7 +31,8 @@
 #   SUITE=uniform  the uniform bound P(h = m) <= m 2^{-m} (UniformBound, 2026-10-31)
 #   SUITE=sentinel the sentinel count Q and M's informative mean (SentinelCount, 2026-10-31)
 #   SUITE=records  M's comparisons on any sequence, 2n - h - r (StackRecords, 2026-11-02)
-#   SUITE=all      all ten (the default)
+#   SUITE=equidist R + 1 and h equidistributed, Lemma 3 (SpineEquidist, 2026-11-26)
+#   SUITE=all      all eleven (the default)
 # Expect, for `moments`: 18 mutations, all detected; 3 refactors, none flagged.
 # Two of the weakening cases (W3, W5) are caught by the build rather than by the
 # lock -- see PORT-STATUS.md 5.5 for why that is a correct detection, not a miss.
@@ -58,6 +59,8 @@
 # Expect, for `sentinel`: 4 mutations, all detected (3 by the build, 1 by the
 # lock); 1 refactor, not flagged.
 # Expect, for `records`: 4 mutations, all detected (3 by the build, 1 by the
+# lock); 1 refactor, not flagged.
+# Expect, for `equidist`: 3 mutations, all detected (2 by the build, 1 by the
 # lock); 1 refactor, not flagged.
 # (V3, like W3/W5, is caught by the build rather than the lock -- see
 # PORT-STATUS-EXEC.md 6.5 for why that is a correct detection, not a miss.)
@@ -93,7 +96,8 @@ PP="$MUT/MakinenAnalysis/OnePassParent.lean"
 UB="$MUT/MakinenAnalysis/UniformBound.lean"
 SC="$MUT/MakinenAnalysis/SentinelCount.lean"
 SK="$MUT/MakinenAnalysis/StackRecords.lean"
-FILES=("$EM" "$TI" "$MB" "$XM" "$XS" "$XB" "$XE" "$BM" "$BP" "$BL" "$BC" "$B1" "$BR" "$BD" "$BK" "$UO" "$BA" "$OP" "$PG" "$PB" "$PP" "$UB" "$SC" "$SK")
+SE="$MUT/MakinenAnalysis/SpineEquidist.lean"
+FILES=("$EM" "$TI" "$MB" "$XM" "$XS" "$XB" "$XE" "$BM" "$BP" "$BL" "$BC" "$B1" "$BR" "$BD" "$BK" "$UO" "$BA" "$OP" "$PG" "$PB" "$PP" "$UB" "$SC" "$SK" "$SE")
 for f in "${FILES[@]}"; do cp "$f" "$f.bak"; done
 restore() { for f in "${FILES[@]}"; do cp "$f.bak" "$f"; done; }
 trap restore EXIT
@@ -704,6 +708,27 @@ run_case "KR1 add a comment before costM_add_records" "$SK" \
   '-- (comment added by the mutation harness)
 theorem costM_add_records (A : List α) :' none
 fi   # SUITE records
+
+if [ "$SUITE" = "all" ] || [ "$SUITE" = "equidist" ]; then
+echo "== equidist: wrong-maths mutations (must break the build)"
+run_case "E1 grafting raises h by two" "$SE" \
+  'lemma rlen_graftEnd (A L : T) : rlen (graftEnd A L) = rlen L + 1 := by' \
+  'lemma rlen_graftEnd (A L : T) : rlen (graftEnd A L) = rlen L + 2 := by' build
+run_case "E2 chi sends the spine to h + 1" "$SE" \
+  'theorem rlen_chi (u : T) : rlen (chi u) = spine u := by' \
+  'theorem rlen_chi (u : T) : rlen (chi u) = spine u + 1 := by' build
+
+echo "== equidist: statement weakening (the LOCK must fire)"
+run_case "EW1 lemma_equidist gains a spurious hypothesis" "$SE" \
+  'theorem lemma_equidist {n m : ℕ} (h1 : 1 ≤ m) (hmn : m ≤ n) :' \
+  'theorem lemma_equidist {n m : ℕ} (h1 : 1 ≤ m) (hmn : m ≤ n) (hx : 2 ≤ n) :' statements
+
+echo "== equidist: semantics-preserving refactor (NO gate may fire)"
+run_case "ER1 add a comment before chi_injective" "$SE" \
+  'theorem chi_injective : Function.Injective chi := by' \
+  '-- (comment added by the mutation harness)
+theorem chi_injective : Function.Injective chi := by' none
+fi   # SUITE equidist
 
 echo
 echo "passed: $PASS   failed: $FAIL"

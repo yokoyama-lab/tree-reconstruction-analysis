@@ -242,6 +242,11 @@ THEOREMS=(
   "MakinenAnalysis.StackRecords.costM_add_records"     # cost + h + r = 2n, any list over a linear order
   "MakinenAnalysis.StackRecords.stackRecords_ge_three" # h + r >= 3 for n >= 2
   "MakinenAnalysis.StackRecords.costM_le_seq"          # cost <= 2n - 3 for n >= 2
+  # Lemma 3: final stack height and rightmost path length are equidistributed (SpineEquidist)
+  "MakinenAnalysis.rlen_chi"                  # the bijection chi sends the right spine to h
+  "MakinenAnalysis.card_spine_eq_card_rlen"   # #{spine = m} = #{h = m} on n-node trees
+  "MakinenAnalysis.card_rlen_eq_W"            # #{h = m} = W (n-1) 1 m
+  "MakinenAnalysis.lemma_equidist"            # #{R+1 = m} = #{h = m} = B(n,m)
 )
 
 # A duplicated entry would inflate the count and hide a missing report.

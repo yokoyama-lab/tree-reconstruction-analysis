@@ -33,9 +33,9 @@ SKIP_BUILD=1 bash check-statements.sh
 SKIP_BUILD=1 bash test-check-statements.sh
 ```
 
-The axiom checker runs `lake build` and audits 216 selected theorems, allowing
+The axiom checker runs `lake build` and audits 220 selected theorems, allowing
 only `propext`, `Classical.choice`, and `Quot.sound`. The statement checker
-compares all 216 elaborated types against `STATEMENTS.lock`. Its self-test
+compares all 220 elaborated types against `STATEMENTS.lock`. Its self-test
 verifies rejection of modified and incomplete temporary locks.
 Do not update `lake-manifest.json` when reproducing this version. Downloading
 the Mathlib cache avoids rebuilding Mathlib from source; the artifact's own

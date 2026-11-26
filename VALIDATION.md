@@ -113,3 +113,18 @@ other modules were reused from the compiled cache.
     lock; the refactor was not flagged).
 
   The other suites were not rerun; the modules they mutate are unchanged.
+
+## Update 2026-11-26: equidistribution of `h` and `R + 1`
+
+After adding `SpineEquidist` (see [PROVENANCE.md](PROVENANCE.md)), only the new
+module was elaborated, against compiled dependencies that `lake build --no-build`
+reported up to date; the full `lake build` and the check scripts were not run.
+
+- Lean: the 4 new theorems use only `propext`, `Classical.choice` and
+  `Quot.sound` (`#print axioms`); no `sorry`, `native_decide` or `axiom`.
+- Statement lock: the 4 new lines were generated with the same elaboration and
+  hashing as `check-statements.sh`.
+- Mutation test, new suite only, each case elaborated by hand rather than by the
+  harness: the 2 wrong-maths faults (`E1`, `E2`) were rejected by elaboration;
+  the statement weakening `EW1` changed the hash of `lemma_equidist`, so the
+  lock would fire; the refactor `ER1` left the hash unchanged.
